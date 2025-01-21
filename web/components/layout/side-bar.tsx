@@ -2,7 +2,13 @@ import { ChatContext } from '@/app/chat-context';
 import { DarkSvg, SunnySvg } from '@/components/icons';
 import UserBar from '@/new-components/layout/UserBar';
 import { STORAGE_LANG_KEY, STORAGE_THEME_KEY, STORAGE_USERINFO_KEY } from '@/utils/constants/index';
-import Icon, { GlobalOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import Icon, {
+  DashboardOutlined,
+  DatabaseOutlined,
+  GlobalOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons';
 import { Popover, Tooltip } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import cls from 'classnames';
@@ -262,6 +268,42 @@ function SideBar() {
         ),
         path: '/chat',
         isActive: pathname.startsWith('/chat'),
+      },
+      {
+        key: 'dashboard',
+        name: '智能报表',
+        icon: (
+          <DashboardOutlined
+            style={{
+              fontSize: '23px',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          />
+        ),
+        path: '/dbpages/dashboard/dashboardList',
+        isActive: pathname.startsWith('/dashboardList'),
+      },
+      {
+        key: 'workspace',
+        name: '数据库管理',
+        icon: (
+          <DatabaseOutlined
+            style={{
+              fontSize: '23px',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          />
+        ),
+        path: '/dbpages/workspace',
+        isActive: pathname.startsWith('/workspace'),
       },
       {
         key: 'explore',

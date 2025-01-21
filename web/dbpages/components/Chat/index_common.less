@@ -1,0 +1,20 @@
+@APP-ROOT-ID: #root;
+
+@transition_cubic_bezier: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+@border_focus_transition: all @transition_cubic_bezier,
+height 0s,
+padding 0s,
+border-width 0s;
+
+.func_flex_center(@display:flex) {
+  display: @display;
+  align-items: center;
+  justify-content: center;
+}
+
+.func_flex_center_sized(@width, @height, @display:flex) {
+  .func_flex_center(@display);
+  width: @width;
+  height: @height;
+}

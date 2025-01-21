@@ -19,7 +19,7 @@ function ChatDefault() {
     app_list: [],
     total_count: 0,
   });
-  const [activeKey, setActiveKey] = useState('recommend');
+  const [activeKey, setActiveKey] = useState('used');
   const getAppListWithParams = (params: Record<string, string>) =>
     apiInterceptors(
       getAppList({
@@ -77,12 +77,12 @@ function ChatDefault() {
 
   const items: SegmentedProps['options'] = [
     {
-      value: 'recommend',
-      label: t('recommend_apps'),
-    },
-    {
       value: 'used',
       label: t('used_apps'),
+    },
+    {
+      value: 'recommend',
+      label: t('recommend_apps'),
     },
   ];
 

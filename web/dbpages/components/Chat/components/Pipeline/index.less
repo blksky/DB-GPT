@@ -1,0 +1,61 @@
+.pipeline-flow-tab {
+  height: 100%;
+
+  .ant-tabs-content-holder,
+  .ant-tabs-content,
+  .ant-tabs-tabpane {
+    height: 100%;
+  }
+}
+
+.pipeline-flow-sub-tab {
+  height: 100%;
+
+  .ant-tabs-tabpane {
+    padding-left: 8px !important;
+  }
+}
+
+.pipeline-resize-handle {
+  background: aliceblue;
+  opacity: 0;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.pipeline-item {
+  padding: 0 5px;
+  color: #626a6a;
+  line-height: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &.active {
+    .pipeline-item-arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .pipeline-item-arrow {
+    transform: rotate(0deg);
+    transition: all 0.3s;
+  }
+}
+
+.pipeline-flow-container {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.2s;
+
+  &.active {
+    height: auto;
+    opacity: 1;
+  }
+}

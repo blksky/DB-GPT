@@ -1,0 +1,44 @@
+@import '../../../../dbpages/styles/var.less';
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  background-color: var(--color-bg);
+}
+
+.boxTitleWrapper {
+  height: 30px;
+
+  :global {
+    .ant-breadcrumb {
+      font-size: 14px;
+    }
+  }
+}
+
+.boxContent {
+  width: calc(100% - 24px);
+  height: calc(100% - 66px);
+
+  .boxChat {
+    flex: none;
+    width: 500px;
+    height: 100%;
+    border: 1px solid #e8e9eb;
+    border-radius: 8px;
+  }
+
+  iframe {
+    flex: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e8e9eb;
+    border-radius: 8px;
+  }
+}

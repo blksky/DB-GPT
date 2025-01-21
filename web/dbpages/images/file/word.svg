@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 68</title>
+    <defs>
+        <linearGradient x1="50%" y1="29.7794765%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#0056FF" stop-opacity="0.179578234" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2"
+                 points="6.51003086 13.3333333 8.7345679 8.93913858 9.17708333 13.3333333 10.7916667 13.3333333 14.6666667 4.66666667 12.5617284 4.66666667 10.6122685 9.36516854 10.2056327 4.66666667 8.79436728 4.66666667 6.54591049 9.36516854 6.37847222 4.66666667 4.33333333 4.66666667 4.89544753 13.3333333"></polygon>
+        <filter x="-33.9%" y="-28.8%" width="167.7%" height="180.8%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.17254902   0 0 0 0 0.831372549  0 0 0 1 0" type="matrix"
+                           in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="确认稿" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组-68">
+            <g id="矩形备份-8" fill="#0056FF">
+                <path d="M3,0 L15,0 C16.6568542,-3.04359188e-16 18,1.34314575 18,3 L18,15 C18,16.6568542 16.6568542,18 15,18 L3,18 C1.34314575,18 -6.85272294e-16,16.6568542 0,15 L0,3 C-2.02906125e-16,1.34314575 1.34314575,-5.83819232e-16 3,0 Z"
+                      id="矩形备份-2"></path>
+            </g>
+            <g id="W" fill-rule="nonzero">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <use fill="#FFFFFF" xlink:href="#path-2"></use>
+                <use fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

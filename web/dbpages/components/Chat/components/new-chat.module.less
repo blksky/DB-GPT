@@ -1,0 +1,122 @@
+@import '../styles/animation';
+
+.new-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  .mask-header {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    animation: slide-in-from-top ease 0.3s;
+  }
+
+  .mask-cards {
+    display: flex;
+    margin-top: 5vh;
+    margin-bottom: 20px;
+    animation: slide-in ease 0.3s;
+
+    .mask-card {
+      padding: 20px 10px;
+      background-color: var(--white);
+      border: var(--border-in-light);
+      border-radius: 14px;
+      box-shadow: var(--card-shadow);
+      transform: scale(1);
+
+      &:first-child {
+        transform: rotate(-15deg) translateY(5px);
+      }
+
+      &:last-child {
+        transform: rotate(15deg) translateY(5px);
+      }
+    }
+  }
+
+  .title {
+    margin-bottom: 1vh;
+    font-weight: bolder;
+    font-size: 32px;
+    animation: slide-in ease 0.35s;
+  }
+
+  .sub-title {
+    animation: slide-in ease 0.4s;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    font-size: 12px;
+    animation: slide-in ease 0.45s;
+
+    .skip {
+      margin-left: 10px;
+    }
+  }
+
+  .masks {
+    flex-grow: 1;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+    overflow: auto;
+
+    animation: slide-in ease 0.5s;
+
+    mask-image: @linear;
+
+    @linear: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+    .mask-row {
+      display: flex;
+      // justify-content: center;
+      margin-bottom: 10px;
+
+      .loop(@i) when (@i > 0) {
+        .loop(@i - 1); // 递归调用自身
+        &:nth-child(@{i} * 2) {
+          margin-left: 50px;
+        }
+      }
+
+      .loop(10);
+
+      .mask {
+        display: flex;
+        align-items: center;
+        max-width: 8em;
+        margin-right: 10px;
+        padding: 10px 14px;
+        background-color: var(--white);
+        border: var(--border-in-light);
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        transform: scale(1);
+        cursor: pointer;
+        transition: all ease 0.3s;
+
+        &:hover {
+          z-index: 999;
+          border-color: var(--primary-color);
+          transform: translateY(-5px) scale(1.1);
+        }
+
+        .mask-name {
+          margin-left: 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

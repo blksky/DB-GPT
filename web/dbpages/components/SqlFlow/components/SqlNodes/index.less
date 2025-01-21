@@ -1,0 +1,266 @@
+@import '../../../../styles/var.less';
+
+@primary-color: #1890ff;
+@process-color: orange;
+@error-color: #ff4d4f;
+@success-color: #40a60e;
+
+.sql-flow-node {
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &.label-left {
+    justify-content: flex-start;
+  }
+
+  &.database-node {
+    padding: 1px 10px;
+    border-color: transparent;
+
+    .database-node-icon {
+      height: 1.2em;
+      color: @primary-color;
+      font-size: 50px !important;
+      transform: translateY(-5px);
+    }
+  }
+
+  &.knowledge-node {
+    background-color: #c6d2ef;
+  }
+
+  &.operation-node {
+    background-color: #f0f4c3;
+  }
+
+  &.pipeline-node {
+    background-color: #cfe6dd;
+  }
+
+  &.result-node {
+    background-color: #f4f4f5;
+
+    .result-node-icon {
+      font-size: 40px;
+    }
+  }
+
+  &.decision-node {
+    border-width: 0;
+
+    .decision-node-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .decision-node-svg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      overflow: visible;
+
+      .polygon-shadow {
+        opacity: 0;
+      }
+
+      .polygon {
+        fill: #cfe6dd;
+        stroke: black;
+        stroke-width: 2px;
+      }
+    }
+  }
+
+  &.group-node {
+    background-color: #d5d5d5;
+    border-radius: 15px;
+
+    &.label-inner-bottom {
+      .group-node-label {
+        bottom: 0px;
+      }
+    }
+
+    .group-node-label {
+      position: absolute;
+      bottom: -20px;
+    }
+  }
+
+  &.pipeline-simple-node {
+    background-color: #fff;
+    border: 1px solid #c2c8d5;
+    border-left: 4px solid #5f95ff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.06);
+
+    .pipeline-simple-node-icon {
+      &.database-icon {
+        color: @primary-color;
+        font-size: 20px;
+      }
+    }
+
+    .sql-flow-node-simple-status {
+      position: absolute;
+      right: 5px;
+
+      .simple-process {
+        color: @primary-color;
+      }
+
+      .simple-success,
+      .simple-error {
+        width: 20px;
+      }
+    }
+  }
+
+  .sql-flow-node-status {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    z-index: 2;
+    font-size: 20px !important;
+    line-height: 20px;
+
+    .process {
+      color: @primary-color;
+    }
+
+    .error {
+      color: @error-color;
+    }
+
+    .success {
+      color: @success-color;
+    }
+
+    .sql-flow-node-status-time {
+      color: gray;
+      font-size: 12px;
+    }
+  }
+
+  .sql-flow-node-icon {
+    &.database-icon {
+      height: 1.2em;
+      color: @primary-color;
+      font-size: 30px !important;
+      transform: translateY(-5px);
+    }
+
+    &.modal-icon {
+      color: @primary-color;
+      font-size: 28px !important;
+    }
+  }
+}
+
+.x6-node-selected .sql-flow-node {
+  border-color: @primary-color;
+  box-shadow: 0 0 0 10px #91e5ff;
+
+  &.decision-node {
+    border-color: transparent;
+    box-shadow: none;
+
+    .polygon-shadow {
+      opacity: 1;
+    }
+
+    .polygon {
+      stroke: @primary-color;
+    }
+  }
+}
+
+.x6-node-selected .sql-flow-node.process {
+  border-color: @process-color;
+
+  &.decision-node {
+    border-color: transparent;
+
+    .polygon {
+      stroke: @process-color;
+    }
+  }
+}
+
+.x6-node-selected .sql-flow-node.success {
+  border-color: @success-color;
+
+  &.decision-node {
+    border-color: transparent;
+
+    .polygon {
+      stroke: @success-color;
+    }
+  }
+}
+
+.x6-node-selected .sql-flow-node.error {
+  border-color: @error-color;
+
+  &.decision-node {
+    border-color: transparent;
+
+    .polygon {
+      stroke: @error-color;
+    }
+  }
+}
+
+.x6-edge.process path:nth-child(2) {
+  stroke: @process-color;
+}
+
+.x6-edge.success path:nth-child(2) {
+  stroke: @success-color;
+}
+
+.x6-edge.error path:nth-child(2) {
+  stroke: @error-color;
+}
+
+.x6-edge:hover path:nth-child(2) {
+  stroke: @primary-color;
+}
+
+.x6-edge-selected path:nth-child(2) {
+  stroke: @primary-color;
+}
+
+.sql-flow-node-description {
+  width: 180px;
+
+  .ant-descriptions-title {
+    font-size: 14px;
+  }
+
+  .ant-descriptions-header {
+    margin-bottom: 0;
+  }
+
+  .ant-descriptions-row {
+    .ant-descriptions-item {
+      padding-bottom: 0;
+      font-size: 12px;
+      line-height: 25px;
+    }
+  }
+}
+
+@keyframes running-line {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}

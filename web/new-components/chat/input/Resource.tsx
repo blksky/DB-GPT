@@ -1,5 +1,6 @@
 import { apiInterceptors, postChatModeParamsFileLoad, postChatModeParamsList } from '@/client/api';
 import DBIcon from '@/components/common/db-icon';
+import KnowledgeResource from '@/new-components/chat/input/KnowledgeResource';
 import { ChatContentContext } from '@/pages/chat';
 import { IDB } from '@/types/chat';
 import { dbMapper } from '@/utils';
@@ -121,6 +122,8 @@ const Resource: React.FC<{
     );
   }
 
+  const options = { fileList, setFileList, setLoading, fileName };
+
   switch (resource?.value) {
     case 'excel_file':
     case 'text_file':
@@ -146,11 +149,12 @@ const Resource: React.FC<{
           </Tooltip>
         </Upload>
       );
-    case 'database':
     case 'knowledge':
+      return <KnowledgeResource {...options} />;
+    case 'database':
     case 'plugin':
     case 'awel_flow':
-      if (!resourceValue) {
+      if (!resourceValue || !dbOpts?.find(d => d.value === resourceValue)) {
         setResourceValue(dbOpts?.[0]?.value);
       }
       return (

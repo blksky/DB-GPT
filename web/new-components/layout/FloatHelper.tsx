@@ -3,6 +3,7 @@ import { FloatButton } from 'antd';
 import React from 'react';
 
 const FloatHelper: React.FC = () => {
+  return null;
   return (
     <FloatButton.Group trigger='hover' icon={<SmileOutlined />}>
       <FloatButton icon={<ReadOutlined />} href='http://docs.dbgpt.cn' target='_blank' tooltip='Doucuments' />

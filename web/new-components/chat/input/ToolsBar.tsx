@@ -8,10 +8,8 @@ import Image from 'next/image';
 import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import MaxNewTokens from './MaxNewTokens';
 import ModelSwitcher from './ModelSwitcher';
 import Resource from './Resource';
-import Temperature from './Temperature';
 
 interface ToolsConfig {
   icon: React.ReactNode;
@@ -173,8 +171,8 @@ const ToolsBar: React.FC<{
         <div className='flex gap-3 text-lg'>
           <ModelSwitcher />
           <Resource fileList={fileList} setFileList={setFileList} setLoading={setLoading} fileName={fileName} />
-          <Temperature temperatureValue={temperatureValue} setTemperatureValue={setTemperatureValue} />
-          <MaxNewTokens maxNewTokensValue={maxNewTokensValue} setMaxNewTokensValue={setMaxNewTokensValue} />
+          {/*<Temperature temperatureValue={temperatureValue} setTemperatureValue={setTemperatureValue} />*/}
+          {/*<MaxNewTokens maxNewTokensValue={maxNewTokensValue} setMaxNewTokensValue={setMaxNewTokensValue} />*/}
         </div>
         <div className='flex gap-1'>{returnTools(rightToolsConfig)}</div>
       </div>

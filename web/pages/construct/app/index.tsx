@@ -327,36 +327,36 @@ export default function AppContent() {
                   description={item.app_describe}
                   RightTop={
                     <div className='flex items-center gap-2'>
-                      <Popover
-                        content={
-                          <div className='flex flex-col gap-2'>
-                            <div className='flex items-center gap-2'>
-                              <BulbOutlined
-                                style={{
-                                  color: 'rgb(252,204,96)',
-                                  fontSize: 12,
-                                }}
-                              />
-                              <span className='text-sm text-gray-500'>{t('copy_url')}</span>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                              <BulbOutlined
-                                style={{
-                                  color: 'rgb(252,204,96)',
-                                  fontSize: 12,
-                                }}
-                              />
-                              <span className='text-sm text-gray-500'>{t('double_click_open')}</span>
-                            </div>
-                          </div>
-                        }
-                      >
-                        <DingdingOutlined
-                          className='cursor-pointer text-[#0069fe] hover:bg-white hover:dark:bg-black p-2 rounded-md'
-                          onClick={() => shareDingding(item)}
-                          onDoubleClick={() => openDingding(item)}
-                        />
-                      </Popover>
+                      {/*<Popover*/}
+                      {/*  content={*/}
+                      {/*    <div className='flex flex-col gap-2'>*/}
+                      {/*      <div className='flex items-center gap-2'>*/}
+                      {/*        <BulbOutlined*/}
+                      {/*          style={{*/}
+                      {/*            color: 'rgb(252,204,96)',*/}
+                      {/*            fontSize: 12,*/}
+                      {/*          }}*/}
+                      {/*        />*/}
+                      {/*        <span className='text-sm text-gray-500'>{t('copy_url')}</span>*/}
+                      {/*      </div>*/}
+                      {/*      <div className='flex items-center gap-2'>*/}
+                      {/*        <BulbOutlined*/}
+                      {/*          style={{*/}
+                      {/*            color: 'rgb(252,204,96)',*/}
+                      {/*            fontSize: 12,*/}
+                      {/*          }}*/}
+                      {/*        />*/}
+                      {/*        <span className='text-sm text-gray-500'>{t('double_click_open')}</span>*/}
+                      {/*      </div>*/}
+                      {/*    </div>*/}
+                      {/*  }*/}
+                      {/*>*/}
+                      {/*  <DingdingOutlined*/}
+                      {/*    className='cursor-pointer text-[#0069fe] hover:bg-white hover:dark:bg-black p-2 rounded-md'*/}
+                      {/*    onClick={() => shareDingding(item)}*/}
+                      {/*    onDoubleClick={() => openDingding(item)}*/}
+                      {/*  />*/}
+                      {/*</Popover>*/}
                       <InnerDropdown
                         menu={{
                           items: [

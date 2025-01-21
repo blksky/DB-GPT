@@ -1,0 +1,218 @@
+.message-exporter {
+  &-body {
+    margin-top: 20px;
+  }
+}
+
+.export-content {
+  padding: 10px !important;
+  white-space: break-spaces;
+}
+
+.steps {
+  position: relative;
+  padding: 5px;
+  overflow: hidden;
+  background-color: var(--gray);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow) inset;
+
+  .steps-progress {
+    @padding: 5px;
+    position: absolute;
+    top: @padding;
+    left: @padding;
+    width: calc(100% - 2 * @padding);
+    height: calc(100% - 2 * @padding);
+
+    &-inner {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 0%;
+      height: 100%;
+      background-color: var(--white);
+      border: var(--border-in-light);
+      border-radius: 8px;
+      box-shadow: var(--card-shadow);
+      transition: all ease 0.3s;
+      content: '';
+    }
+  }
+
+  .steps-inner {
+    display: flex;
+    transform: scale(1);
+
+    .step {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      color: var(--black);
+      font-size: 14px;
+      opacity: 0.5;
+      transition: all ease 0.3s;
+
+      @radius: 8px;
+
+      &-finished {
+        opacity: 0.9;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &-current {
+        color: var(--primary-color);
+      }
+
+      .step-index {
+        display: inline-block;
+        margin-right: 8px;
+        padding: 0px 5px;
+        font-size: 12px;
+        background-color: var(--gray);
+        border: var(--border-in-light);
+        border-radius: 6px;
+        opacity: 0.8;
+      }
+
+      .step-name {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.preview-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  button {
+    flex-grow: 1;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.image-previewer {
+  .preview-body {
+    padding: 20px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow) inset;
+
+    .chat-info {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding: 20px;
+      overflow: hidden;
+      background-color: var(--second);
+      border-radius: 10px;
+
+      @media screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .icons {
+          margin-bottom: 20px;
+        }
+      }
+
+      .logo {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 50%;
+        transform: scale(1.5);
+      }
+
+      .main-title {
+        font-weight: bolder;
+        font-size: 20px;
+      }
+
+      .sub-title {
+        font-size: 12px;
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+
+        .icon-space {
+          margin: 0 10px;
+          color: var(--primary-color);
+          font-weight: bolder;
+          font-size: 12px;
+        }
+      }
+
+      .chat-info-item {
+        padding: 2px 15px;
+        color: var(--primary-color);
+        font-size: 12px;
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .message {
+      display: flex;
+      margin-bottom: 20px;
+
+      .avatar {
+        margin-right: 10px;
+      }
+
+      .body {
+        max-width: calc(100% - 104px);
+        padding: 8px 10px;
+        border: var(--border-in-light);
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+
+        code,
+        pre {
+          overflow: hidden;
+        }
+      }
+
+      &-assistant {
+        .body {
+          background-color: var(--white);
+        }
+      }
+
+      &-user {
+        flex-direction: row-reverse;
+
+        .avatar {
+          margin-right: 0;
+        }
+
+        .body {
+          margin-right: 10px;
+          background-color: var(--second);
+        }
+      }
+    }
+  }
+
+  .default-theme {
+  }
+}

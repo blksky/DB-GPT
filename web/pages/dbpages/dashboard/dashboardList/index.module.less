@@ -1,0 +1,54 @@
+@import '../../../../dbpages/styles/var.less';
+
+.box {
+  display: flex;
+  background-color: var(--color-bg);
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.boxTitleWrapper {
+  height: 30px;
+}
+
+.boxTitle {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boxCard {
+  :global {
+    .ant-card-body {
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 135px;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .moreButton {
+    flex-shrink: 0;
+    display: none;
+    transform: rotate(90deg);
+  }
+
+  &:hover {
+    .moreButton {
+      display: block;
+    }
+  }
+}

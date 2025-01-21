@@ -21,6 +21,12 @@ const ChatContainer = dynamic(() => import('@/components/chat/chat-container'), 
 
 const { Content } = Layout;
 
+export enum EnumResourceType {
+  KNOWLEDGE = 'knowledge',
+  UPLOAD_FILE = 'upload_file',
+  KNOWLEDGE_FILE = 'knowledge_file',
+}
+
 interface ChatContentProps {
   history: ChatHistoryResponse; // 会话记录列表
   replyLoading: boolean; // 对话回复loading
@@ -32,11 +38,13 @@ interface ChatContentProps {
   appInfo: IApp;
   temperatureValue: any;
   maxNewTokensValue: any;
+  resourceType: EnumResourceType;
   resourceValue: any;
   modelValue: string;
   setModelValue: React.Dispatch<React.SetStateAction<string>>;
   setTemperatureValue: React.Dispatch<React.SetStateAction<any>>;
   setMaxNewTokensValue: React.Dispatch<React.SetStateAction<any>>;
+  setResourceType: React.Dispatch<React.SetStateAction<any>>;
   setResourceValue: React.Dispatch<React.SetStateAction<any>>;
   setAppInfo: React.Dispatch<React.SetStateAction<IApp>>;
   setAgent: React.Dispatch<React.SetStateAction<string>>;
@@ -48,6 +56,7 @@ interface ChatContentProps {
   refreshAppInfo: () => void;
   setHistory: React.Dispatch<React.SetStateAction<ChatHistoryResponse>>;
 }
+
 export const ChatContentContext = createContext<ChatContentProps>({
   history: [],
   replyLoading: false,
@@ -59,9 +68,11 @@ export const ChatContentContext = createContext<ChatContentProps>({
   appInfo: {} as any,
   temperatureValue: 0.5,
   maxNewTokensValue: 1024,
+  resourceType: EnumResourceType.KNOWLEDGE,
   resourceValue: {},
   modelValue: '',
   setModelValue: () => {},
+  setResourceType: () => {},
   setResourceValue: () => {},
   setTemperatureValue: () => {},
   setMaxNewTokensValue: () => {},
@@ -101,6 +112,7 @@ const Chat: React.FC = () => {
   const [temperatureValue, setTemperatureValue] = useState();
   const [maxNewTokensValue, setMaxNewTokensValue] = useState();
   const [resourceValue, setResourceValue] = useState<any>();
+  const [resourceType, setResourceType] = useState<EnumResourceType>(EnumResourceType.KNOWLEDGE);
   const [modelValue, setModelValue] = useState<string>('');
 
   useEffect(() => {
@@ -309,9 +321,11 @@ const Chat: React.FC = () => {
         appInfo,
         temperatureValue,
         maxNewTokensValue,
+        resourceType,
         resourceValue,
         modelValue,
         setModelValue,
+        setResourceType,
         setResourceValue,
         setTemperatureValue,
         setMaxNewTokensValue,

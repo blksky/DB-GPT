@@ -29,10 +29,10 @@ const Playground: NextPage = () => {
   });
 
   const items: SegmentedProps['options'] = [
-    {
-      value: 'recommend',
-      label: t('recommend_apps'),
-    },
+    // {
+    //   value: 'recommend',
+    //   label: t('recommend_apps'),
+    // },
     {
       value: 'all',
       label: t('all_apps'),
