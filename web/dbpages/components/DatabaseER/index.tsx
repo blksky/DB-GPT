@@ -25,12 +25,12 @@ import TypesContextProvider from './context/TypesContext';
 // @ts-ignore
 import UndoRedoContextProvider from './context/UndoRedoContext';
 
-import { useWorkspaceStore } from '@/pages/dbpages/workspace/store';
+import { useWorkspaceStore } from '@/dbpages/workspace/store';
 import { useEffect, useRef, useState } from 'react';
 
 // @ts-ignore
-import { TreeNodeType } from '@/dbpages/constants';
 import { treeConfig } from '@/dbpages/blocks/Tree/treeConfig';
+import { TreeNodeType } from '@/dbpages/constants';
 import sqlService from '@/dbpages/service/sql';
 import { getSchemaList } from '@/dbpages/store/connection';
 import { fetchDbErByDb } from '@/dbpages/store/dbEr';

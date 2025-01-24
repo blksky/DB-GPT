@@ -1,21 +1,15 @@
 import { Spin } from 'antd';
 import classnames from 'classnames';
-import {
-  ForwardedRef,
-  forwardRef,
-  lazy,
-  memo,
-  Suspense,
-  useCallback,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react';
+import dynamic from 'next/dynamic';
+import { ForwardedRef, forwardRef, memo, useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 import { IExportRefFunction } from '../MonacoEditor';
 import styles from './index.module.less';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 interface IProps {
   className?: string;
@@ -92,15 +86,13 @@ const SingleFileMonacoEditor = memo<IProps>(
 
     return (
       <div ref={ref as any} className={classnames(styles.singleFileMonacoEditor, className)}>
-        <Suspense fallback={<Spin />}>
-          <MonacoEditor
-            ref={monacoEditorRef}
-            id={editorId}
-            options={options as any}
-            shortcutKey={registerShortcutKey}
-            focusChange={focusChange}
-          />
-        </Suspense>
+        <MonacoEditor
+          ref={monacoEditorRef}
+          id={editorId}
+          options={options as any}
+          shortcutKey={registerShortcutKey}
+          focusChange={focusChange}
+        />
       </div>
     );
   }),

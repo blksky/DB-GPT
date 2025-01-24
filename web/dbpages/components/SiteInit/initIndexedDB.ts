@@ -3,6 +3,7 @@ import indexedDB, { EnumIndexedDbType, EnumIndexedTableType, getDataByIndex } fr
 
 /** 初始化indexedDB */
 const initIndexedDB = () => {
+  if (typeof window === 'undefined') return;
   indexedDB.createDB(EnumIndexedDbType.CHAT_BI, 2).then(db => {
     // @ts-ignore
     window._indexedDB = {

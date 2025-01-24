@@ -518,7 +518,7 @@ export const useChatStore: any = createPersistStore(
   {
     name: StoreKey.Chat,
     version: 3.1,
-    storage: createJSONStorage(() => IndexedDBStorage(EnumChatStoreType.CHAT)),
+    storage: typeof window !== 'undefined' && createJSONStorage(() => IndexedDBStorage(EnumChatStoreType.CHAT)),
     migrate(persistedState, version) {
       const state = persistedState as any;
       const newState = JSON.parse(JSON.stringify(state));

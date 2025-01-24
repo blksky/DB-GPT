@@ -1,7 +1,7 @@
 import connectionService from '@/dbpages/service/connection';
 import { getConnectionList, setConnectionEnvList } from '@/dbpages/store/connection';
-import { useWorkspaceStore } from '@/pages/dbpages/workspace/store';
-import { setCurrentConnectionDetails } from '@/pages/dbpages/workspace/store/common';
+import { useWorkspaceStore } from '@/dbpages/workspace/store';
+import { setCurrentConnectionDetails } from '@/dbpages/workspace/store/common';
 
 const getConnectionEnvList = () => {
   connectionService.getEnvList().then(res => {

@@ -12,8 +12,8 @@ import { useMemo } from 'react';
 import { ITreeConfigItem, treeConfig } from '../treeConfig';
 
 // ----- store -----
-import { useWorkspaceStore } from '@/pages/dbpages/workspace/store';
-import { addWorkspaceTab, createConsole } from '@/pages/dbpages/workspace/store/console';
+import { useWorkspaceStore } from '@/dbpages/workspace/store';
+import { addWorkspaceTab, createConsole } from '@/dbpages/workspace/store/console';
 
 // ---- functions -----
 import { deleteTable } from '../functions/deleteTable';

@@ -1,6 +1,6 @@
 import { WorkspaceTabType } from '@/dbpages/constants';
 import sqlService from '@/dbpages/service/sql';
-import { createConsole } from '@/pages/dbpages/workspace/store/console';
+import { createConsole } from '@/dbpages/workspace/store/console';
 
 export const openView = (props: { addWorkspaceTab: any; treeNodeData: any }) => {
   const { treeNodeData } = props;

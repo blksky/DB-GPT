@@ -29,7 +29,7 @@ export const useChatBIStore = createPersistStore(
   {
     name: StoreKey.ChatScope,
     version: 3.1,
-    storage: createJSONStorage(() => IndexedDBStorage(EnumChatStoreType.CHAT_BI)),
+    storage: typeof window !== 'undefined' && createJSONStorage(() => IndexedDBStorage(EnumChatStoreType.CHAT_BI)),
     migrate(persistedState) {
       const state = persistedState as any;
       const newState = JSON.parse(JSON.stringify(state));

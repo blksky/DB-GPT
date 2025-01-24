@@ -1,6 +1,6 @@
 import Iconfont from '@/dbpages/components/Iconfont';
-import { useWorkspaceStore } from '@/pages/dbpages/workspace/store';
-import { togglePanelLeft, togglePanelRight } from '@/pages/dbpages/workspace/store/config';
+import { useWorkspaceStore } from '@/dbpages/workspace/store';
+import { togglePanelLeft, togglePanelRight } from '@/dbpages/workspace/store/config';
 import classnames from 'classnames';
 import React, { memo } from 'react';
 import styles from './index.module.less';

@@ -1,13 +1,13 @@
 import Iconfont from '@/dbpages/components/Iconfont';
 import ScrollLoading from '@/dbpages/components/ScrollLoading';
-import i18n from '../../i18n';
 import historyService, { IHistoryRecord } from '@/dbpages/service/history';
-import { copy } from '../../utils';
-import { createConsole } from '@/pages/dbpages/workspace/store/console';
+import { createConsole } from '@/dbpages/workspace/store/console';
 import { Popover } from 'antd';
 import classnames from 'classnames';
 import * as monaco from 'monaco-editor';
 import React, { memo } from 'react';
+import i18n from '../../i18n';
+import { copy } from '../../utils';
 import styles from './index.module.less';
 
 interface IProps {

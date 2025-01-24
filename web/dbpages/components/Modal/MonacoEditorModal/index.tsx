@@ -1,7 +1,11 @@
 import { Modal, Spin } from 'antd';
-import { Suspense, lazy, memo } from 'react';
+import dynamic from 'next/dynamic';
+import { memo } from 'react';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 const TriggeredModal = memo<ITriggeredModal>(() => {
   return (
@@ -15,9 +19,7 @@ const TriggeredModal = memo<ITriggeredModal>(() => {
       footer={false}
     >
       <div className={styles.monacoEditorBox}>
-        <Suspense fallback={<Spin />}>
-          <MonacoEditor id='edit-dialog' ref={monacoEditorRef} />
-        </Suspense>
+        <MonacoEditor id='edit-dialog' ref={monacoEditorRef} />
       </div>
     </Modal>
   );

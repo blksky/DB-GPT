@@ -1,7 +1,7 @@
-import i18n from '../../../dbpages/i18n';
 import { Button, Dropdown } from 'antd';
 import classnames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
+import i18n from '../../../dbpages/i18n';
 // import RefreshLoadingButton from '@/pages/dbpages/components/RefreshLoadingButton';
 
 // ----- services -----
@@ -13,8 +13,8 @@ import { databaseMap } from '../../../dbpages/constants';
 
 // ----- components -----
 import CreateConnection from '@/dbpages/blocks/CreateConnection';
-import Iconfont from '../../../dbpages/components/Iconfont';
 import LoadingContent from '@/dbpages/components/Loading/LoadingContent';
+import Iconfont from '../../../dbpages/components/Iconfont';
 import MenuLabel from '../../../dbpages/components/MenuLabel';
 
 // ----- hooks -----
@@ -23,9 +23,11 @@ import useClickAndDoubleClick from '@/dbpages/hooks/useClickAndDoubleClick';
 // ----- store -----
 import { getConnectionList, useConnectionStore } from '@/dbpages/store/connection';
 import { setMainPageActiveTab } from '@/dbpages/store/main';
-import { setCurrentConnectionDetails } from '@/pages/dbpages/workspace/store/common';
-import { getOpenConsoleList } from '@/pages/dbpages/workspace/store/console';
+import { setCurrentConnectionDetails } from '@/dbpages/workspace/store/common';
+import { getOpenConsoleList } from '@/dbpages/workspace/store/console';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import styles from './index.module.less';
 
 const ConnectionsPage = () => {

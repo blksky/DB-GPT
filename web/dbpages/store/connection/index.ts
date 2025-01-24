@@ -8,8 +8,8 @@ import { IConnectionEnv, IConnectionListItem } from '@/dbpages/typings/connectio
 
 import { treeConfig } from '@/dbpages/blocks/Tree/treeConfig';
 import { ITreeNode } from '@/dbpages/typings';
-import { useWorkspaceStore } from '@/pages/dbpages/workspace/store';
-import { setCurrentConnectionDetails } from '@/pages/dbpages/workspace/store/common';
+import { useWorkspaceStore } from '@/dbpages/workspace/store';
+import { setCurrentConnectionDetails } from '@/dbpages/workspace/store/common';
 import { TreeNodeType } from '../../constants';
 
 export interface IConnectionStore {

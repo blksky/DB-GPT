@@ -3,7 +3,7 @@ import { ArtColumn, BaseTable, SortItem, features, useTablePipeline } from 'ali-
 import { Button, Dropdown, Input, MenuProps, Modal, Popover, Space, Spin, message } from 'antd';
 import classnames from 'classnames';
 import lodash from 'lodash';
-import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import i18n from '../../../../i18n';
@@ -40,11 +40,15 @@ import RightClickMenu, { AllSupportedMenusType } from '../RightClickMenu';
 import StatusBar from '../StatusBar';
 
 // 自定义hooks
+import dynamic from 'next/dynamic';
 import useCurdTableData from '../../hooks/useCurdTableData';
 import useMultipleSelect from '../../hooks/useMultipleSelect';
 import usePasteData from '../../hooks/usePasteData';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 interface ITableProps {
   className?: string;
@@ -1089,21 +1093,19 @@ export default function TableBox(props: ITableProps) {
   const renderMonacoEditor = useMemo(() => {
     return (
       <div className={styles.monacoEditor}>
-        <Suspense fallback={<Spin />}>
-          <MonacoEditor
-            ref={monacoEditorRef}
-            id={`view_table-Cell_data-${uuid()}`}
-            appendValue={{
-              text: transformInputValue(viewTableCellData?.value),
-              range: 'reset',
-            }}
-            language='plaintext'
-            options={{
-              lineNumbers: 'off',
-              readOnly: !queryResultData.canEdit,
-            }}
-          />
-        </Suspense>
+        <MonacoEditor
+          ref={monacoEditorRef}
+          id={`view_table-Cell_data-${uuid()}`}
+          appendValue={{
+            text: transformInputValue(viewTableCellData?.value),
+            range: 'reset',
+          }}
+          language='plaintext'
+          options={{
+            lineNumbers: 'off',
+            readOnly: !queryResultData.canEdit,
+          }}
+        />
       </div>
     );
   }, [queryResultData, viewTableCellData]);

@@ -6,12 +6,11 @@ import { AIType } from '@/dbpages/typings/ai';
 import connectToEventSource from '@/dbpages/utils/eventSource';
 import { formatParams } from '@/dbpages/utils/url';
 import { Drawer, Modal, Spin } from 'antd';
+import dynamic from 'next/dynamic';
 import {
   ForwardedRef,
-  Suspense,
   createContext,
   forwardRef,
-  lazy,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -33,9 +32,14 @@ import { useSaveEditorData } from './hooks/useSaveEditorData';
 import { fetchRemainingUse, setAiConfig, useSettingStore } from '@/dbpages/store/setting';
 
 // ----- function -----
-import { handelCreateConsole } from '@/pages/dbpages/workspace/functions/shortcutKeyCreateConsole';
+import { handelCreateConsole } from '@/dbpages/workspace/functions/shortcutKeyCreateConsole';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+// const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 enum IPromptType {
   NL_2_SQL = 'NL_2_SQL',
@@ -418,18 +422,16 @@ function ConsoleEditor(props: IProps, ref: ForwardedRef<IConsoleRef>) {
               }}
             />
           )}
-          <Suspense fallback={<Spin />}>
-            <MonacoEditor
-              id={uid}
-              defaultValue={defaultValue}
-              ref={editorRef as any}
-              className={hasAiChat ? styles.consoleEditorWithChat : styles.consoleEditor}
-              addAction={addAction}
-              options={props.editorOptions}
-              shortcutKey={registerShortcutKey}
-              isActive={isActive}
-            />
-          </Suspense>
+          <MonacoEditor
+            id={uid}
+            defaultValue={defaultValue}
+            ref={editorRef as any}
+            className={hasAiChat ? styles.consoleEditorWithChat : styles.consoleEditor}
+            addAction={addAction}
+            options={props.editorOptions}
+            shortcutKey={registerShortcutKey}
+            isActive={isActive}
+          />
           <Drawer
             open={isAiDrawerOpen}
             getContainer={false}

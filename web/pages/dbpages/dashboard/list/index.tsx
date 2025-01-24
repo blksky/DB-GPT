@@ -10,12 +10,19 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Dropdown, Flex, Form, Input, Modal, Row, message } from 'antd';
 import { useEffect, useState } from 'react';
 import i18n from '../../../../dbpages/i18n';
-import { DASHBOARD_LIST } from './ModelType';
 
 import { getUserId } from '@/utils';
 import { useRouter } from 'next/router';
 import Iconfont from '../../../../dbpages/components/Iconfont';
 import styles from './index.module.less';
+
+/** 图表列表 */
+export const DASHBOARD_LIST = [
+  { id: '985192741891870720', icon: '/images/985192741891870720.png' },
+  { id: '1038077558706540544', icon: '/images/1038077558706540544.png' },
+  { id: '1038077633021218816', icon: '/images/1038077633021218816.png' },
+  { id: '1037776160966184960', icon: '/images/1037776160966184960.jpg' },
+];
 
 function DashboardList() {
   const router = useRouter();

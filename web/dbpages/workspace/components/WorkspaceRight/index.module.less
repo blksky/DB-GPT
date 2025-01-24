@@ -1,0 +1,42 @@
+@import '../../../styles/var.less';
+
+.workspaceRight {
+  position: relative;
+  display: flex;
+  flex: 1;
+  width: 0;
+  flex-direction: column;
+  background: var(--color-bg-base);
+}
+
+.workspaceExtendNav {
+  border-top: 1px solid var(--color-border);
+}
+
+.draggableContainer {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.workspaceExtendBody {
+  border-top: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.workspaceExtend {
+  height: 100%;
+  flex-shrink: 0;
+  border-left: 1px solid var(--color-border);
+  display: flex;
+}
+
+.consoleTabsContainer {
+  height: 50%;
+}
+
+.searchResultContainer {
+  border-top: 1px solid var(--color-border-secondary);
+  flex: 1;
+}

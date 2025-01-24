@@ -1,4 +1,4 @@
-import { createConsole } from '@/pages/dbpages/workspace/store/console';
+import { createConsole } from '@/dbpages/workspace/store/console';
 import { IconDeleteStroked, IconEdit, IconKeyStroked, IconMinus, IconMore, IconSearch } from '@douyinfe/semi-icons';
 import { Button, Popover, Tag } from '@douyinfe/semi-ui';
 import { Drawer, Flex } from 'antd';

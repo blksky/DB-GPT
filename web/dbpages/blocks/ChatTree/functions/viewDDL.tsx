@@ -1,13 +1,17 @@
 // 置顶表格
 import mysqlService from '@/dbpages/service/sql';
 import { Spin } from 'antd';
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { v4 as uuid } from 'uuid';
 import styles from './viewDDL.module.less';
 
 import { openModal } from '@/dbpages/store/common/components';
+import dynamic from 'next/dynamic';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 export const viewDDL = treeNodeData => {
   const getSql = () => {
@@ -44,9 +48,5 @@ export const MonacoEditorAsync = (params: { getSql: any }) => {
   getSql().then(sql => {
     monacoEditorRef.current.setValue(sql);
   });
-  return (
-    <Suspense fallback={<Spin />}>
-      <MonacoEditor id={uuid()} ref={monacoEditorRef} />
-    </Suspense>
-  );
+  return <MonacoEditor id={uuid()} ref={monacoEditorRef} />;
 };

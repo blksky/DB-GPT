@@ -6,12 +6,12 @@ module.exports = {
     commonjs: true,
   },
   extends: [
-    // 'eslint:recommended',
-    // 'plugin:@typescript-eslint/recommended',
-    // 'plugin:react/recommended',
-    // 'plugin:react-hooks/recommended',
-    // 'plugin:prettier/recommended',
-    // 'prettier',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -23,9 +23,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    '*': 'off',
     // 'prettier/prettier': 'error',
     // 'react/react-in-jsx-scope': 'off',
     // 'react/prop-types': 'off',
+    // 'react/display-name': 'off',
     // '@typescript-eslint/no-explicit-any': 'off',
     // '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     // '@typescript-eslint/no-unused-vars': [

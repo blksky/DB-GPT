@@ -1,10 +1,14 @@
 import { Modal, Spin } from 'antd';
 import classnames from 'classnames';
-import { Suspense, lazy, memo, useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { memo, useEffect, useRef, useState } from 'react';
 import { IRangeType } from '../MonacoEditor';
 import styles from './index.module.less';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 interface IProps {
   className?: string;
@@ -39,9 +43,7 @@ export default memo<IProps>(function EditDialog(props) {
         width={800}
         // onCancel={(() => { setVerifyDialog(false) })}
       >
-        <Suspense fallback={<Spin />}>
-          <MonacoEditor id='edit-dialog' ref={monacoEditorRef} />
-        </Suspense>
+        <MonacoEditor id='edit-dialog' ref={monacoEditorRef} />
       </Modal>
     </div>
   );

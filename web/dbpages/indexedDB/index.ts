@@ -123,7 +123,7 @@ export const createDB = (dbName: string, version: number) => {
 export const addData = (db: EnumIndexedDbType, tableName: EnumIndexedTableType, data: any) => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
-    const transaction = window._indexedDB[db].transaction(tableName, 'readwrite');
+    const transaction = typeof window !== 'undefined' && window._indexedDB[db].transaction(tableName, 'readwrite');
     const objectStore = transaction.objectStore(tableName);
     const request = objectStore.add(data);
     request.onsuccess = () => {
@@ -144,7 +144,7 @@ export const deleteDataByIndex = (
 ) => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
-    const transaction = window._indexedDB[db].transaction(tableName, 'readwrite');
+    const transaction = typeof window !== 'undefined' && window._indexedDB[db].transaction(tableName, 'readwrite');
     const objectStore = transaction.objectStore(tableName);
     const request = objectStore.index(indexName).delete(indexValue);
     request.onsuccess = () => {
@@ -160,7 +160,7 @@ export const deleteDataByIndex = (
 export const deleteData = (db: EnumIndexedDbType, tableName: EnumIndexedTableType, key: any) => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
-    const transaction = window._indexedDB[db].transaction(tableName, 'readwrite');
+    const transaction = typeof window !== 'undefined' && window._indexedDB[db].transaction(tableName, 'readwrite');
     const objectStore = transaction.objectStore(tableName);
     const request = objectStore.delete(key);
     request.onsuccess = () => {
@@ -181,7 +181,7 @@ export const getDataByIndex = (
 ) => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
-    const transaction = window._indexedDB[db].transaction(tableName, 'readwrite');
+    const transaction = typeof window !== 'undefined' && window._indexedDB[db].transaction(tableName, 'readwrite');
     const objectStore = transaction.objectStore(tableName);
     const request = objectStore.index(indexName).get(indexValue);
     request.onsuccess = () => {
@@ -201,7 +201,7 @@ export const getDataByCursor = (
 ) => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
-    const transaction = window._indexedDB[db].transaction(tableName, 'readwrite');
+    const transaction = typeof window !== 'undefined' && window._indexedDB[db].transaction(tableName, 'readwrite');
     const objectStore = transaction.objectStore(tableName);
     const request = objectStore.openCursor();
     const result: any[] = [];
@@ -232,7 +232,7 @@ export const getDataByCursor = (
 export const updateData = (db: EnumIndexedDbType, tableName: EnumIndexedTableType, data: any) => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
-    const transaction = window._indexedDB[db].transaction(tableName, 'readwrite');
+    const transaction = typeof window !== 'undefined' && window._indexedDB[db].transaction(tableName, 'readwrite');
     const objectStore = transaction.objectStore(tableName);
     const request = objectStore.put(data);
     request.onsuccess = () => {
@@ -248,7 +248,7 @@ export const updateData = (db: EnumIndexedDbType, tableName: EnumIndexedTableTyp
 export const closeDB = (db: EnumIndexedDbType) => {
   return new Promise(resolve => {
     // @ts-ignore
-    window._indexedDB[db].close();
+    typeof window !== 'undefined' && window._indexedDB[db].close();
     resolve(true);
   });
 };

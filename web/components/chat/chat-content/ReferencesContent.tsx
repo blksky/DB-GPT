@@ -47,6 +47,7 @@ const ReferencesContentView: React.FC<{ references: any }> = ({ references }) =>
       {references.map((reference: any) => {
         return (
           <div
+            key={reference.name}
             className='flex text-sm gap-2 text-blue-400'
             onClick={() => {
               setActiveKey(reference.name);

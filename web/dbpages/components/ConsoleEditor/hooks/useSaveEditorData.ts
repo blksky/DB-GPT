@@ -1,11 +1,11 @@
 import { ConsoleStatus } from '@/dbpages/constants';
-import i18n from '../../../i18n';
-import indexedDB, { EnumIndexedDbType, EnumIndexedTableType } from '../../../indexedDB';
 import historyServer from '@/dbpages/service/history';
-import { getCookie } from '../../../utils';
-import { getSavedConsoleList } from '@/pages/dbpages/workspace/store/console';
+import { getSavedConsoleList } from '@/dbpages/workspace/store/console';
 import { message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
+import i18n from '../../../i18n';
+import indexedDB, { EnumIndexedDbType, EnumIndexedTableType } from '../../../indexedDB';
+import { getCookie } from '../../../utils';
 
 interface IProps {
   isActive?: boolean;

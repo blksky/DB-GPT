@@ -1,18 +1,28 @@
-import { useWorkspaceStore } from '@/pages/dbpages/workspace/store';
-import { setPanelLeftWidth } from '@/pages/dbpages/workspace/store/config';
+import { useWorkspaceStore } from '@/dbpages/workspace/store';
+import { setPanelLeftWidth } from '@/dbpages/workspace/store/config';
 import { Spin } from 'antd';
 import classnames from 'classnames';
-import { Suspense, lazy, memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 
-import DraggableContainer from '../../../dbpages/components/DraggableContainer';
+import DraggableContainer from '@/dbpages/components/DraggableContainer';
+import dynamic from 'next/dynamic';
 
 // import useMonacoTheme from '@/dbpages/components/MonacoEditor/useMonacoTheme';
-import shortcutKeyCreateConsole from './functions/shortcutKeyCreateConsole';
+import shortcutKeyCreateConsole from '@/dbpages/workspace/functions/shortcutKeyCreateConsole';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import styles from './index.module.less';
 
-const WorkspaceLeft = lazy(() => import('./components/WorkspaceLeft'));
-const WorkspaceRight = lazy(() => import('./components/WorkspaceRight'));
+const WorkspaceLeft = dynamic(() => import('@/dbpages/workspace/components/WorkspaceLeft'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
+
+const WorkspaceRight = dynamic(() => import('@/dbpages/workspace/components/WorkspaceRight'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 const workspacePage = memo(() => {
   const draggableRef = useRef<any>();
@@ -43,13 +53,9 @@ const workspacePage = memo(() => {
           style={{ '--panel-left-width': `${panelLeftWidth}px` } as any}
           className={classnames({ [styles.hiddenPanelLeft]: !panelLeft }, styles.boxLeft)}
         >
-          <Suspense fallback={<Spin />}>
-            <WorkspaceLeft />
-          </Suspense>
+          <WorkspaceLeft />
         </div>
-        <Suspense fallback={<Spin />}>
-          <WorkspaceRight />
-        </Suspense>
+        <WorkspaceRight />
       </DraggableContainer>
     </div>
   );

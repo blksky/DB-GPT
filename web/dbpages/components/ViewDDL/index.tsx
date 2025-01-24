@@ -1,12 +1,19 @@
 import sqlServer from '@/dbpages/service/sql';
 import { Spin } from 'antd';
 import classnames from 'classnames';
-import React, { lazy, memo, Suspense, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import React, { memo, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import { IExportRefFunction } from '../MonacoEditor';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import styles from './index.module.less';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 interface IProps {
   className?: string;
@@ -37,18 +44,16 @@ export default memo<IProps>(props => {
 
   return (
     <div className={classnames(styles.viewDDL, className)}>
-      <Suspense fallback={<Spin />}>
-        <MonacoEditor
-          id={monacoEditorId}
-          ref={monacoEditorRef}
-          options={{
-            lineNumbers: 'off',
-            readOnly: true,
-            glyphMargin: false,
-            folding: false,
-          }}
-        />
-      </Suspense>
+      <MonacoEditor
+        id={monacoEditorId}
+        ref={monacoEditorRef}
+        options={{
+          lineNumbers: 'off',
+          readOnly: true,
+          glyphMargin: false,
+          folding: false,
+        }}
+      />
     </div>
   );
 });

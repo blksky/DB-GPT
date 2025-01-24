@@ -1,9 +1,12 @@
-import i18n from '../../../dbpages/i18n';
 import DatabaseDoc from '@/pages/dbpages/knowledge/databaseDoc';
 import { ConsoleSqlOutlined, FileTextOutlined } from '@ant-design/icons';
 import { Flex, Menu } from 'antd';
 import { useEffect, useState } from 'react';
+import i18n from '../../../dbpages/i18n';
 import GoldSql from './goldSql';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import styles from './index.module.less';
 
 interface IProps {

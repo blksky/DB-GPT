@@ -1,13 +1,20 @@
 import { ChatSession, createMessage, EnumChatStoreType } from '@/dbpages/components/Chat/store';
-import { Breadcrumb, Button, Flex, Typography } from 'antd';
+import { Breadcrumb, Button, Flex, Spin, Typography } from 'antd';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { lazy, Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import styles from './index.module.less';
 
 import { getChatStoreMethod } from '@/dbpages/components/Chat/store/ModelType';
 
-const Chat = lazy(() => import('@/dbpages/components/Chat/components/chat'));
+const Chat = dynamic(() => import('@/dbpages/components/Chat/components/chat'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 // const BI_URL = 'http://localhost:8080';
 const BI_URL = 'https://dw-kg.jd.com';
@@ -24,12 +31,13 @@ export const EnumFrameMessageType = {
 
 function DashboardDetail() {
   const router = useRouter();
-  const params = router.query || {};
+  const params = (router.query || {}) as any;
   const refChat = useRef<any>();
   const refFrame = useRef<any>();
   const isEdit = params.type === '1';
   const backUrl =
-    window.location.origin + `/dbpages/dashboard/detail/${params.id}?name=${encodeURIComponent(params.name)}&type=0`;
+    typeof window !== 'undefined' &&
+    window.location.origin + `/dbpages/dashboard/detail/${params.id}?name=${encodeURIComponent(params?.name)}&type=0`;
 
   const chatStore = getChatStoreMethod(EnumChatStoreType.CHAT_SCOPE)();
 
@@ -60,7 +68,7 @@ function DashboardDetail() {
       const { sessions } = getChatStoreMethod(EnumChatStoreType.CHAT_SCOPE).getState();
       chatStore.deleteSession(sessions.findIndex((d: ChatSession) => d.id === sessionId));
     };
-    window.addEventListener('beforeunload', removeSession);
+    typeof window !== 'undefined' && window.addEventListener('beforeunload', removeSession);
     return removeSession;
   }, []);
 
@@ -93,15 +101,16 @@ function DashboardDetail() {
     });
   };
   const initFrameMessage = () => {
-    window.addEventListener(
-      'message',
-      ({ data }) => {
-        const { type, options } = data;
-        if (type === EnumFrameMessageType.REPORT_CREATE) {
-        }
-      },
-      false,
-    );
+    typeof window !== 'undefined' &&
+      window.addEventListener(
+        'message',
+        ({ data }) => {
+          const { type } = data;
+          if (type === EnumFrameMessageType.REPORT_CREATE) {
+          }
+        },
+        false,
+      );
   };
 
   const frameUrl = isEdit
@@ -135,15 +144,13 @@ function DashboardDetail() {
         <iframe ref={refFrame} src={frameUrl} />
         {isEdit && (
           <div className={styles.boxChat}>
-            <Suspense>
-              <Chat
-                ref={refChat}
-                scopeData={params.id}
-                windowTitleRender={windowTitleRender}
-                renderHello={renderHello}
-                chatType={EnumChatStoreType.CHAT_SCOPE}
-              />
-            </Suspense>
+            <Chat
+              ref={refChat}
+              scopeData={params.id}
+              windowTitleRender={windowTitleRender}
+              renderHello={renderHello}
+              chatType={EnumChatStoreType.CHAT_SCOPE}
+            />
           </div>
         )}
       </Flex>

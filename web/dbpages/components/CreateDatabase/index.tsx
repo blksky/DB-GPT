@@ -1,16 +1,20 @@
 import { DatabaseTypeCode } from '@/dbpages/constants';
 import sqlService from '@/dbpages/service/sql';
-import { setOpenCreateDatabaseModal } from '@/pages/dbpages/workspace/store/modal';
+import { setOpenCreateDatabaseModal } from '@/dbpages/workspace/store/modal';
 import { Form, Input, Modal, Spin } from 'antd';
 import classnames from 'classnames';
 import { debounce } from 'lodash';
-import React, { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import i18n from '../../i18n';
 import { IExportRefFunction } from '../MonacoEditor';
 import styles from './index.module.less';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 interface IProps {
   relyOnParams: {
@@ -168,15 +172,13 @@ const CreateDatabase = () => {
             <div className={styles.previewLine} />
           </div>
           <div className={styles.monacoEditorBox}>
-            <Suspense fallback={<Spin />}>
-              <MonacoEditor
-                ref={monacoEditorRef}
-                options={{
-                  lineNumbers: 'off',
-                }}
-                id={monacoEditorUuid}
-              />
-            </Suspense>
+            <MonacoEditor
+              ref={monacoEditorRef}
+              options={{
+                lineNumbers: 'off',
+              }}
+              id={monacoEditorUuid}
+            />
           </div>
           {errorMessage && (
             <>

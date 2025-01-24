@@ -4,12 +4,16 @@ import sqlService, { IExecuteSqlParams } from '@/dbpages/service/sql';
 import { formatSql } from '@/dbpages/utils/sql';
 import { Button, Spin } from 'antd';
 import classnames from 'classnames';
-import { Suspense, lazy, memo, useEffect, useMemo, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import i18n from '../../i18n';
 import { IExportRefFunction } from '../MonacoEditor';
 import styles from './index.module.less';
 
-const MonacoEditor = lazy(() => import('@/dbpages/components/MonacoEditor'));
+const MonacoEditor = dynamic(() => import('@/dbpages/components/MonacoEditor'), {
+  ssr: false,
+  loading: () => <Spin />,
+});
 
 interface IProps {
   className?: string;
@@ -78,17 +82,15 @@ export default memo<IProps>(props => {
 
   const renderMonacoEditor = useMemo(() => {
     return (
-      <Suspense fallback={<Spin />}>
-        <MonacoEditor
-          className={styles.monacoEditor}
-          id='view_sql'
-          ref={monacoEditorRef}
-          appendValue={{
-            text: appendValue,
-            range: 'reset',
-          }}
-        />
-      </Suspense>
+      <MonacoEditor
+        className={styles.monacoEditor}
+        id='view_sql'
+        ref={monacoEditorRef}
+        appendValue={{
+          text: appendValue,
+          range: 'reset',
+        }}
+      />
     );
   }, [appendValue]);
 
