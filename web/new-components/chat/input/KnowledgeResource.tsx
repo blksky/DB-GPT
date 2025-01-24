@@ -143,7 +143,12 @@ const KnowledgeResource: React.FC<{
 
   return (
     <>
-      <KnowledgeSearch ref={refKnowledgeSearch} dbOpts={dbOpts} onOk={handleFileSearchOk} />
+      <KnowledgeSearch
+        ref={refKnowledgeSearch}
+        dbOpts={dbOpts}
+        resourceValue={resourceValue}
+        onOk={handleFileSearchOk}
+      />
       <Flex gap={8}>
         <Select
           style={{ width: 140 }}
@@ -156,7 +161,7 @@ const KnowledgeResource: React.FC<{
             { value: EnumResourceType.KNOWLEDGE_FILE_UPLOAD, label: '上传本地文件' },
           ]}
         />
-        {resourceType === EnumResourceType.KNOWLEDGE && (
+        {(resourceType === EnumResourceType.KNOWLEDGE || resourceType === EnumResourceType.KNOWLEDGE_FILE) && (
           <Select
             value={resourceValue}
             className='w-52 h-8 rounded-3xl'

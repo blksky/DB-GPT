@@ -519,7 +519,7 @@ class Service(BaseService[KnowledgeSpaceEntity, SpaceServeRequest, SpaceServeRes
         ):
             knowledge = KnowledgeFactory.create(
                 datasource=doc.content,
-                knowledge_type=KnowledgeType.get_by_value(doc.doc_type),
+                knowledge_type=KnowledgeType.get_by_value(doc.doc_type),metadata={'doc_id': doc.id,'doc_name': doc.doc_name,'doc_type': doc.doc_type}
             )
         doc.status = SyncStatus.RUNNING.name
 

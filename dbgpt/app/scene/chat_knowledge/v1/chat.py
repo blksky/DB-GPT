@@ -268,5 +268,5 @@ class ChatKnowledge(BaseChat):
             "execute_similar_search", metadata={"query": query}
         ):
             return await self._space_retriever.aretrieve_with_scores(
-                query, self.recall_score, filters = MetadataFilters(filters=[MetadataFilter(key="document_id", operator=FilterOperator.IN, value=self.document_ids)])
+                query, self.recall_score, filters = MetadataFilters(filters=[MetadataFilter(key="doc_id", operator=FilterOperator.EQ, value=self.document_ids)])
             )

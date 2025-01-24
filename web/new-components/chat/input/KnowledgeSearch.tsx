@@ -7,11 +7,12 @@ import { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState } fr
 
 export type KnowledgeSearchProps = {
   dbOpts: any;
+  resourceValue: any;
   onOk: (checkedList: { id: number; space: string; doc_name: string }[]) => void;
 };
 
 const KnowledgeSearch = forwardRef((props: KnowledgeSearchProps, ref) => {
-  const { dbOpts } = props;
+  const { dbOpts, resourceValue } = props;
   const refResultList = useRef<any | undefined>();
   const [docSourceScope, setDocSourceScope] = useState<string>(dbOpts?.[0]?.value);
   const [fileSearchState, setFileSearchState] = useState<{
@@ -25,8 +26,12 @@ const KnowledgeSearch = forwardRef((props: KnowledgeSearchProps, ref) => {
     useSearchStore();
 
   useEffect(() => {
-    setDocSourceScope(dbOpts?.[0]?.value);
-  }, [dbOpts]);
+    if (dbOpts?.some((d: any) => d.value === resourceValue)) {
+      setDocSourceScope(resourceValue);
+    } else {
+      setDocSourceScope(dbOpts?.[0]?.value);
+    }
+  }, [dbOpts, resourceValue]);
 
   useEffect(() => {
     setSearchCondition({
@@ -78,7 +83,7 @@ const KnowledgeSearch = forwardRef((props: KnowledgeSearchProps, ref) => {
       prefix: (
         <Select
           value={docSourceScope}
-          options={dbOpts?.map(d => ({ label: d.value, value: d.value }))}
+          options={dbOpts?.map((d: any) => ({ label: d.value, value: d.value }))}
           className='filter-select'
           onChange={handleSelectChange}
           onClick={e => e.stopPropagation()}
