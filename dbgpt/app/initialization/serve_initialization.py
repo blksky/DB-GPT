@@ -136,3 +136,13 @@ def register_serve_apps(system_app: SystemApp, cfg: Config, webserver_port: int)
     # Register serve libro
     system_app.register(LibroServe)
     # ################################ Libro Serve Register End #######################################
+
+     # ################################ Dashboard Serve Register Begin ######################################
+    from dbgpt.serve.dashboard.serve import (
+        SERVE_CONFIG_KEY_PREFIX as DASHBOARD_SERVE_CONFIG_KEY_PREFIX,
+    )
+    from dbgpt.serve.dashboard.serve import Serve as DashboradServe
+
+    # Register serve app
+    system_app.register(DashboradServe)
+    # ################################ Conversation Serve Register End ########################################

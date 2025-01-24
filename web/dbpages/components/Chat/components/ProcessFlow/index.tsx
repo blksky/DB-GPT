@@ -7,7 +7,7 @@ import ProcessResult from '../ProcessResult';
 import ProcessSQL from './ProcessSQL';
 
 import { getChatStoreMethod } from '@/dbpages/components/Chat/store/ModelType';
-import './index.less';
+import styles from './index.module.less';
 
 type ProcessFlowProps = {
   message: ChatMessage;
@@ -54,7 +54,7 @@ const ProcessFlow: React.FC<ProcessFlowProps> = ({ biData, message, chatType }) 
   return is_expert ? (
     <Tabs
       size='small'
-      className='chat-message-tab'
+      className={styles['chat-message-tab']}
       activeKey={activeSqlFlowType}
       onChange={handleTabChange}
       items={sql_flow_types.map((flowType: EnumSqlFlowType) => ({

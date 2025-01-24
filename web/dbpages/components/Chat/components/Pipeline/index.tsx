@@ -27,7 +27,7 @@ import PipelineLog from './PipelineLog';
 import { PipelineJSON, PipelineS6Table, PipelineS8Table, PipelineTable } from './PipelineResult';
 import PipelineTemplate from './PipelineTemplate';
 
-import './index.less';
+import styles from './index.module.less';
 
 type PipelineProps = {
   isExpertMode?: boolean;
@@ -179,7 +179,7 @@ const Pipeline: React.FC<PipelineProps> = ({ flowType, flowData, isExpertMode })
   const nodeTabs = useMemo(() => {
     if (!refNodeList.current.length) return null;
     const tabProps = {
-      className: 'pipeline-flow-tab',
+      className: styles['pipeline-flow-tab'],
       activeKey: refActiveNodeId.current,
       onChange: (activeKey: string) => {
         updateActiveNodeId(activeKey);
@@ -194,7 +194,7 @@ const Pipeline: React.FC<PipelineProps> = ({ flowType, flowData, isExpertMode })
         const subTabProps: any = {
           type: 'card',
           tabPosition: 'left',
-          className: 'pipeline-flow-sub-tab',
+          className: styles['pipeline-flow-sub-tab'],
           items: [
             {
               key: 'result',
@@ -269,13 +269,13 @@ const Pipeline: React.FC<PipelineProps> = ({ flowType, flowData, isExpertMode })
 
   const titleExtraRender = () => {
     return (
-      <Flex gap={10} align='center' className='sql-type-list'>
+      <Flex gap={10} align='center' className={styles['sql-type-list']}>
         <Tooltip color={Constants.TOOLTIP_COLOR} title={showPipeline ? '收起' : '展开'}>
           <div
-            className={classNames('pipeline-item', { active: showPipeline })}
+            className={classNames(styles['pipeline-item'], { [styles['active']]: showPipeline })}
             onClick={() => setShowPipeline(!showPipeline)}
           >
-            <div className='pipeline-item-arrow'>
+            <div className={styles['pipeline-item-arrow']}>
               <Iconfont code='&#xe641;' />
             </div>
           </div>
@@ -286,7 +286,10 @@ const Pipeline: React.FC<PipelineProps> = ({ flowType, flowData, isExpertMode })
 
   const contentRender = () => {
     return (
-      <Flex vertical={true} className={classNames('pipeline-flow-container', { active: showPipeline })}>
+      <Flex
+        vertical={true}
+        className={classNames(styles['pipeline-flow-container'], { [styles['active']]: showPipeline })}
+      >
         <Resizable
           defaultSize={{ height: defaultHeight }}
           enable={{ bottom: true }}
@@ -295,7 +298,7 @@ const Pipeline: React.FC<PipelineProps> = ({ flowType, flowData, isExpertMode })
               refSqlFlow.current?.resize();
             }, 100);
           }}
-          handleClasses={{ bottom: 'pipeline-resize-handle' }}
+          handleClasses={{ bottom: styles['pipeline-resize-handle'] }}
         >
           <SqlFlow ref={refSqlFlow} flowData={sqlFlowData} schemaData={schemaData} onNodeClick={handleNodeClick} />
         </Resizable>

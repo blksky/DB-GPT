@@ -6,7 +6,7 @@ import { getFileSizeString } from '@/dbpages/utils/FileUtil';
 import { FolderAddFilled, FolderAddOutlined } from '@ant-design/icons';
 import { Alert, Flex, Table, Tooltip, Typography, Upload } from 'antd';
 import React from 'react';
-import './index.less';
+import styles from './index.module.less';
 
 type FileUploaderProps = {
   chatType?: EnumChatStoreType;
@@ -110,17 +110,17 @@ const FileUploader: React.FC<FileUploaderProps> = props => {
     <Upload {...uploadProps}>
       <Tooltip
         autoAdjustOverflow={false}
-        placement={!!fileCount ? 'topLeft' : 'top'}
+        placement={fileCount ? 'topLeft' : 'top'}
         color={Constants.TOOLTIP_COLOR}
         title={renderTooltip()}
         overlayStyle={{
-          maxWidth: !!fileCount ? 'none' : 250,
+          maxWidth: fileCount ? 'none' : 250,
         }}
       >
-        {!!fileCount ? (
-          <FolderAddFilled className='chat-message-file-upload' />
+        {fileCount ? (
+          <FolderAddFilled className={styles['chat-message-file-upload']} />
         ) : (
-          <FolderAddOutlined className='chat-message-file-upload' />
+          <FolderAddOutlined className={styles['chat-message-file-upload']} />
         )}
       </Tooltip>
     </Upload>

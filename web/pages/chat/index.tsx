@@ -23,8 +23,8 @@ const { Content } = Layout;
 
 export enum EnumResourceType {
   KNOWLEDGE = 'knowledge',
-  UPLOAD_FILE = 'upload_file',
   KNOWLEDGE_FILE = 'knowledge_file',
+  KNOWLEDGE_FILE_UPLOAD = 'knowledge_file_upload',
 }
 
 interface ChatContentProps {
@@ -40,12 +40,14 @@ interface ChatContentProps {
   maxNewTokensValue: any;
   resourceType: EnumResourceType;
   resourceValue: any;
+  resourceScopeValue: any;
   modelValue: string;
   setModelValue: React.Dispatch<React.SetStateAction<string>>;
   setTemperatureValue: React.Dispatch<React.SetStateAction<any>>;
   setMaxNewTokensValue: React.Dispatch<React.SetStateAction<any>>;
   setResourceType: React.Dispatch<React.SetStateAction<any>>;
   setResourceValue: React.Dispatch<React.SetStateAction<any>>;
+  setResourceScopeValue: React.Dispatch<React.SetStateAction<any>>;
   setAppInfo: React.Dispatch<React.SetStateAction<IApp>>;
   setAgent: React.Dispatch<React.SetStateAction<string>>;
   setCanAbort: React.Dispatch<React.SetStateAction<boolean>>;
@@ -70,10 +72,12 @@ export const ChatContentContext = createContext<ChatContentProps>({
   maxNewTokensValue: 1024,
   resourceType: EnumResourceType.KNOWLEDGE,
   resourceValue: {},
+  resourceScopeValue: {},
   modelValue: '',
   setModelValue: () => {},
   setResourceType: () => {},
   setResourceValue: () => {},
+  setResourceScopeValue: () => {},
   setTemperatureValue: () => {},
   setMaxNewTokensValue: () => {},
   setAppInfo: () => {},
@@ -98,6 +102,7 @@ const Chat: React.FC = () => {
   const chatId = searchParams?.get('id') ?? '';
   const scene = searchParams?.get('scene') ?? '';
   const knowledgeId = searchParams?.get('knowledge_id') ?? '';
+  // const knowledgeType = searchParams?.get('knowledge_type') ?? '';
   const dbName = searchParams?.get('db_name') ?? '';
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -113,6 +118,7 @@ const Chat: React.FC = () => {
   const [maxNewTokensValue, setMaxNewTokensValue] = useState();
   const [resourceValue, setResourceValue] = useState<any>();
   const [resourceType, setResourceType] = useState<EnumResourceType>(EnumResourceType.KNOWLEDGE);
+  const [resourceScopeValue, setResourceScopeValue] = useState<any>();
   const [modelValue, setModelValue] = useState<string>('');
 
   useEffect(() => {
@@ -122,6 +128,10 @@ const Chat: React.FC = () => {
     setResourceValue(
       knowledgeId || dbName || appInfo?.param_need?.filter(item => item.type === 'resource')[0]?.bind_value,
     );
+    // setResourceType(
+    //   (knowledgeType ||
+    //     appInfo?.param_need?.filter(item => item.type === 'resource_type')[0]?.bind_value) as EnumResourceType,
+    // );
   }, [appInfo, dbName, knowledgeId, model]);
 
   useEffect(() => {
@@ -323,10 +333,12 @@ const Chat: React.FC = () => {
         maxNewTokensValue,
         resourceType,
         resourceValue,
+        resourceScopeValue,
         modelValue,
         setModelValue,
         setResourceType,
         setResourceValue,
+        setResourceScopeValue,
         setTemperatureValue,
         setMaxNewTokensValue,
         setAppInfo,

@@ -8,8 +8,7 @@ import { Collapse, Table } from 'antd';
 import { FC } from 'react';
 import ReactJson from 'react-json-view';
 import { getFormatedSql } from '../ProcessResult/ModelType';
-import './PipelineResult.less';
-import './PipelineTemplate.less';
+import styles from './PipelineResult.module.less';
 
 type PipelineResultProps = {
   result?: any;
@@ -24,7 +23,7 @@ type PipelineTableProps = {
 
 export const PipelineText: FC<PipelineResultProps> = props => {
   return (
-    <SyntaxHighlighter className='pipeline-result-template' language='text' style={solarizedlight}>
+    <SyntaxHighlighter className={styles['pipeline-result-template']} language='text' style={solarizedlight}>
       {props.result}
     </SyntaxHighlighter>
   );
@@ -32,7 +31,7 @@ export const PipelineText: FC<PipelineResultProps> = props => {
 
 export const PipelineSQL: FC<PipelineResultProps> = props => {
   return (
-    <SyntaxHighlighter className='pipeline-result-sql' language='sql' style={solarizedlight}>
+    <SyntaxHighlighter className={styles['pipeline-result-sql']} language='sql' style={solarizedlight}>
       {getFormatedSql(props.result)}
     </SyntaxHighlighter>
   );
@@ -40,7 +39,7 @@ export const PipelineSQL: FC<PipelineResultProps> = props => {
 
 export const PipelineJSON: FC<PipelineResultProps> = props => {
   return (
-    <div className='pipeline-result-json'>
+    <div className={styles['pipeline-result-json']}>
       <ReactJson src={props.result} displayDataTypes={false} enableClipboard={false} />
     </div>
   );
@@ -95,7 +94,7 @@ export const PipelineTable: FC<PipelineTableProps> = props => {
     },
   };
   return (
-    <div className='pipeline-result-table'>
+    <div className={styles['pipeline-result-table']}>
       <Table {...tableOpt} />
     </div>
   );

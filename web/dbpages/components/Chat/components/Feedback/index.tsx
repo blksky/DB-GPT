@@ -9,7 +9,7 @@ import ReportDialog from './ReportDialog';
 import { getChatStoreMethod } from '@/dbpages/components/Chat/store/ModelType';
 import { EnumChaseNodeStep, EnumNodeStep, EnumSqlFlowType } from '@/dbpages/components/SqlFlow/ModelType';
 import { IGoldSql } from '@/dbpages/typings/goldSql';
-import './index.less';
+import styles from './index.module.less';
 
 type FeedbackProps = {
   message: ChatMessage;
@@ -62,18 +62,18 @@ const Feedback: React.FC<FeedbackProps> = props => {
   };
 
   return (
-    <Flex gap={8} align='center' className='chat-message-action-feedback'>
+    <Flex gap={8} align='center' className={styles['chat-message-action-feedback']}>
       <div>这个回答正确吗？</div>
       <LikeOutlined
         onClick={handleLike}
-        className={classNames('chat-message-action-feedback-icon', {
-          ['feedback-icon-active']: message.userLike === true,
+        className={classNames(styles['chat-message-action-feedback-icon'], {
+          [styles['feedback-icon-active']]: message.userLike === true,
         })}
       />
       <DislikeOutlined
         onClick={handleUnLike}
-        className={classNames('chat-message-action-feedback-icon', {
-          ['feedback-icon-active']: message.userLike === false,
+        className={classNames(styles['chat-message-action-feedback-icon'], {
+          [styles['feedback-icon-active']]: message.userLike === false,
         })}
       />
       {props.chatType === EnumChatStoreType.CHAT_BI && <GoldSqlModify {...goldSqlProps} />}

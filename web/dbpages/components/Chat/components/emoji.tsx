@@ -2,8 +2,8 @@ import EmojiPicker, { Emoji, EmojiStyle, Theme as EmojiTheme } from 'emoji-picke
 
 import { ModelType } from '../store';
 
-import { ReactComponent as BlackBotIcon } from '../icons/black-bot.svg';
-import { ReactComponent as BotIcon } from '../icons/bot.svg';
+import BlackBotIcon from '../icons/black-bot.svg';
+import BotIcon from '../icons/bot.svg';
 
 import RobotIcon from '../images/icons_avatar_robot.svg';
 
@@ -65,7 +65,7 @@ export function CommonAvatar(props: { isUser: boolean }) {
           style={{ width: 28, height: 28, boxShadow: '0 1px 10px 0 #2d2f3319' }}
         />
       ) : (
-        <img src={RobotIcon} />
+        <RobotIcon />
       )}
     </div>
   );

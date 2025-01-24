@@ -12,8 +12,16 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import '../app/i18n';
+
 import '../nprogress.css';
 import '../styles/globals.css';
+
+import '@/dbpages/components/Chat/index.less';
+import '@/dbpages/components/Chat/styles/globals.less';
+import '@/dbpages/components/Chat/styles/highlight.less';
+import '@/dbpages/components/Chat/styles/markdown.less';
+import '@/dbpages/components/SqlFlow/components/SqlNodes/index.less';
+import '@/dbpages/global.less';
 // import TopProgressBar from '@/components/layout/top-progress-bar';
 
 const antdDarkTheme: MappingAlgorithm = (seedToken, mapToken) => {
@@ -70,6 +78,7 @@ function LayoutWrapper({ children }: { children: React.ReactNode }) {
 
     // MOCK User info
     const user = {
+      user_id: 1,
       user_channel: `dbgpt`,
       user_no: `001`,
       nick_name: `dbgpt`,

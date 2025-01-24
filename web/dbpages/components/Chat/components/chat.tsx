@@ -3,16 +3,18 @@ import { useDebouncedCallback } from 'use-debounce';
 
 // @ts-ignore
 // @ts-ignore
-import { ReactComponent as BottomIcon } from '../icons/bottom.svg';
-import { ReactComponent as BrainIcon } from '../icons/brain.svg';
-import { ReactComponent as SettingsIcon } from '../icons/chat-settings.svg';
-import { ReactComponent as CopyIcon } from '../icons/copy.svg';
-import { ReactComponent as StopIcon } from '../icons/pause.svg';
-import { ReactComponent as PromptIcon } from '../icons/prompt.svg';
-import { ReactComponent as ResetIcon } from '../icons/reload.svg';
+import BottomIcon from '../icons/bottom.svg';
+import BrainIcon from '../icons/brain.svg';
+import SettingsIcon from '../icons/chat-settings.svg';
+import CopyIcon from '../icons/copy.svg';
+import StopIcon from '../icons/pause.svg';
+import PromptIcon from '../icons/prompt.svg';
+import ResetIcon from '../icons/reload.svg';
 
-import ICON_DOWN from '../images/icons_direction_right.svg';
-import ICON_READY from '../images/icons_ready.svg';
+// @ts-ignore
+import ICON_DOWN from '../images/icons_direction_right.svg?url';
+// @ts-ignore
+import ICON_READY from '../images/icons_ready.svg?url';
 
 import {
   BOT_HELLO,

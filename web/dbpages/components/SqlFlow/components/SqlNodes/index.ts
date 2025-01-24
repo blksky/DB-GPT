@@ -10,8 +10,6 @@ import PipelineNode from './PipelineNode';
 import PipelineSimpleNode from './PipelineSimpleNode';
 import ResultNode from './ResultNode';
 
-import './index.less';
-
 register({
   shape: EnumSqlNodeType.DATABASE_NODE,
   width: 70,

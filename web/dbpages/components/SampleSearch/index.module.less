@@ -1,0 +1,39 @@
+.search-sample {
+  --site-text-light-more-color: #999999;
+  --site-font-size-lg: 16px;
+  --site-font-size: 14px;
+  --site-font-size-sm: 12px;
+  --site-border-radius-lg: 12px;
+  --site-border-radius-md: 8px;
+  --site-border-radius: 4px;
+  --site-border-radius-sm: 2px;
+  --site-btn-border-color: #e5e5e5;
+  --site-btn-hover-border-color: #bfbfbf;
+  --site-input-count-suffix-color: #bfbfbf;
+  --site-hot-list-hover: #f7f7f7;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  :global {
+    .ant-input-search {
+      width: 654px;
+      .ant-input-group-addon {
+        background: transparent;
+      }
+      .ant-input-affix-wrapper-lg {
+        padding: 10px 11px !important;
+        border-top-left-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
+      }
+      .ant-input-search-button {
+        width: 100px;
+        height: 44px !important;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 0 10px 10px 0 !important;
+      }
+    }
+  }
+}

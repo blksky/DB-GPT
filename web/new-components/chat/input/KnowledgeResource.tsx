@@ -1,24 +1,35 @@
 import { apiInterceptors, postChatModeParamsFileLoad, postChatModeParamsList } from '@/client/api';
 import DBIcon from '@/components/common/db-icon';
+import KnowledgeSearch from '@/new-components/chat/input/KnowledgeSearch';
 import { ChatContentContext, EnumResourceType } from '@/pages/chat';
 import { IDB } from '@/types/chat';
 import { dbMapper } from '@/utils';
 import { FolderAddOutlined, PlusOutlined } from '@ant-design/icons';
 import { useAsyncEffect, useRequest } from 'ahooks';
-import { Button, Flex, Modal, Select, Tooltip, Upload, UploadFile } from 'antd';
+import { Button, Flex, Select, Tooltip, Upload, UploadFile } from 'antd';
 import classNames from 'classnames';
 import { useSearchParams } from 'next/navigation';
-import React, { memo, useCallback, useContext, useMemo, useState } from 'react';
+import React, {
+  forwardRef,
+  memo,
+  useCallback,
+  useContext,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 const KnowledgeResource: React.FC<{
   fileList: UploadFile[];
   setFileList: React.Dispatch<React.SetStateAction<UploadFile<any>[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   fileName: string;
-}> = ({ fileList, setFileList, setLoading, fileName }) => {
+}> = forwardRef(({ fileList, setFileList, setLoading, fileName }, ref) => {
   const {
     setResourceValue,
     setResourceType,
+    setResourceScopeValue,
     appInfo,
     refreshHistory,
     refreshDialogList,
@@ -26,6 +37,8 @@ const KnowledgeResource: React.FC<{
     resourceType,
     resourceValue,
   } = useContext(ChatContentContext);
+
+  const refKnowledgeSearch = useRef<any>(null);
 
   const searchParams = useSearchParams();
   const scene = searchParams?.get('scene') ?? '';
@@ -118,9 +131,19 @@ const KnowledgeResource: React.FC<{
   if (!resourceValue || !dbOpts?.find(d => d.value === resourceValue)) {
     setResourceValue(dbOpts?.[0]?.value);
   }
+
+  const handleFileSearchOk = (checkedList: { id: number; space: string; doc_name: string }[]) => {
+    setResourceValue(checkedList?.[0]?.space);
+    setResourceScopeValue({ documents: checkedList });
+  };
+
+  useImperativeHandle(ref, () => {
+    return {};
+  });
+
   return (
     <>
-      <Modal width={720} title='知识库选择' footer={null}></Modal>
+      <KnowledgeSearch ref={refKnowledgeSearch} dbOpts={dbOpts} onOk={handleFileSearchOk} />
       <Flex gap={8}>
         <Select
           style={{ width: 140 }}
@@ -130,7 +153,7 @@ const KnowledgeResource: React.FC<{
           options={[
             { value: EnumResourceType.KNOWLEDGE, label: '知识库' },
             { value: EnumResourceType.KNOWLEDGE_FILE, label: '知识库文件' },
-            { value: EnumResourceType.UPLOAD_FILE, label: '上传本地文件' },
+            { value: EnumResourceType.KNOWLEDGE_FILE_UPLOAD, label: '上传本地文件' },
           ]}
         />
         {resourceType === EnumResourceType.KNOWLEDGE && (
@@ -145,10 +168,12 @@ const KnowledgeResource: React.FC<{
         )}
         {resourceType === EnumResourceType.KNOWLEDGE_FILE && (
           <Tooltip title='最多可选择5个文件'>
-            <Button icon={<PlusOutlined />}>选择文件</Button>
+            <Button icon={<PlusOutlined />} onClick={() => refKnowledgeSearch.current.showSearch()}>
+              选择文件
+            </Button>
           </Tooltip>
         )}
-        {resourceType === EnumResourceType.UPLOAD_FILE && (
+        {resourceType === EnumResourceType.KNOWLEDGE_FILE_UPLOAD && (
           <Upload
             name='file'
             accept='.pdf'
@@ -172,6 +197,6 @@ const KnowledgeResource: React.FC<{
       </Flex>
     </>
   );
-};
+});
 
 export default memo(KnowledgeResource);

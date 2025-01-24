@@ -432,6 +432,7 @@ async def get_chat_instance(dialogue: ConversationVo = Body()) -> BaseChat:
         "sys_code": dialogue.sys_code,
         "current_user_input": dialogue.user_input,
         "select_param": dialogue.select_param,
+        "select_param_scope": dialogue.select_param_scope,
         "model_name": dialogue.model_name,
         "app_code": dialogue.app_code,
         "ext_info": dialogue.ext_info,

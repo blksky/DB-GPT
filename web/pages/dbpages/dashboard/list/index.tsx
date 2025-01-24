@@ -2,17 +2,17 @@ import {
   createChart,
   createDashboard,
   deleteDashboard,
-  getDashboardById,
   getDashboardList,
   updateDashboard,
 } from '@/dbpages/service/dashboard';
 import { IDashboardItem } from '@/dbpages/typings/index';
-import { DASHBOARD_LIST } from '@/pages/dbpages/dashboard/dashboardList/ModelType';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Dropdown, Flex, Form, Input, Modal, Row, message } from 'antd';
 import { useEffect, useState } from 'react';
 import i18n from '../../../../dbpages/i18n';
+import { DASHBOARD_LIST } from './ModelType';
 
+import { getUserId } from '@/utils';
 import { useRouter } from 'next/router';
 import Iconfont from '../../../../dbpages/components/Iconfont';
 import styles from './index.module.less';
@@ -31,23 +31,23 @@ function DashboardList() {
     queryDashboardList();
   }, []);
 
-  useEffect(() => {
-    const { chartIds } = curDashboard || {};
-    if (!curDashboard) {
-      return;
-    }
-    if (!chartIds || !chartIds.length) {
-      initCreateChart(curDashboard);
-    }
-  }, [curDashboard]);
+  // useEffect(() => {
+  //   const { chartIds } = curDashboard || {};
+  //   if (!curDashboard) {
+  //     return;
+  //   }
+  //   if (!chartIds || !chartIds.length) {
+  //     initCreateChart(curDashboard);
+  //   }
+  // }, [curDashboard]);
 
   const queryDashboardList = async () => {
     const res = await getDashboardList({});
-    const { data } = res;
+    const { data } = res.data;
     if (Array.isArray(data) && data.length > 0) {
       setDashboardList(data);
-      const _curDashboard = await getDashboardById({ id: data[0].id });
-      setCurDashboard(_curDashboard);
+      // const _curDashboard = await getDashboardById({ id: data[0].id });
+      // setCurDashboard(_curDashboard);
     }
   };
 
@@ -57,7 +57,7 @@ function DashboardList() {
     const chartId = await createChart({});
     const newDashboard = {
       ...dashboard,
-      schema: JSON.stringify([[chartId]]),
+      content: JSON.stringify([[chartId]]),
       chartIds: [chartId],
     };
     updateDashboard(newDashboard);
@@ -65,7 +65,7 @@ function DashboardList() {
   };
 
   const handleDetail = (data: any) => {
-    router.push(`/dashboard/detail/${data.id}/${encodeURIComponent(data.name)}/1`);
+    router.push(`/dbpages/dashboard/detail/${data.id}?name=${encodeURIComponent(data.name)}&type=1`);
   };
 
   const getDropdownItems: any = (data: any) => [
@@ -147,6 +147,7 @@ function DashboardList() {
             await form.validateFields();
             const formValue = form.getFieldsValue(true);
             const { id } = formValue;
+            formValue.user_id = getUserId();
 
             if (id) {
               await updateDashboard(formValue);

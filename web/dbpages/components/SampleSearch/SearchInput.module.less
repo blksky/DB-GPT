@@ -1,0 +1,206 @@
+.main-search-input-auto {
+  width: 100%;
+  height: auto;
+
+  &.hasValue {
+    .icon-search {
+      color: var(--primary-color);
+    }
+  }
+
+  :global(.anticon) {
+    color: var(--site-text-light-more-color);
+    font-size: var(--site-font-size);
+
+    &.icon-search {
+      font-size: 28px;
+    }
+  }
+
+  .main-search-input {
+    ::-webkit-input-placeholder {
+      /*Chrome/Safari*/
+      color: var(--site-text-light-more-color);
+      font-size: var(--site-font-size-lg);
+      line-height: 28px;
+    }
+
+    ::-moz-placeholder {
+      /*Firefox*/
+      color: var(--site-text-light-more-color);
+      font-size: var(--site-font-size-lg);
+      line-height: 28px;
+    }
+
+    width: 100%;
+    border-color: var(--site-btn-border-color);
+    padding-inline: 12px;
+    height: 58px;
+    padding: 2px;
+    color: var(--site-text-light-more2-color);
+    font-size: var(--site-font-size-lg);
+    background-image: linear-gradient(5deg, #00a4ee 49%, #5f67ff 72%, #00e4c8 94%);
+    background-clip: padding-box, border-box;
+    background-origin: border-box !important;
+    border-width: 0;
+    border-radius: var(--site-border-radius-lg);
+    transition: background-image 1s;
+
+    &:hover {
+      border-color: var(--site-input-count-suffix-color);
+    }
+    &:focus,
+    &:global(.ant-input-affix-wrapper-focused) {
+      //padding: 6px 11px;
+      border-color: var(--primary-color);
+    }
+
+    &:focus,
+    &:global(.ant-input-affix-wrapper-focused) {
+      background-image: linear-gradient(92deg, #5f74ff 0%, #05d3ff 100%);
+    }
+
+    &:hover,
+    &:focus,
+    &:global(.ant-input-affix-wrapper-focused) {
+      box-shadow: 0px 2px 6px 0px #0fccff33;
+    }
+
+    input {
+      width: calc(100% - 76px);
+      overflow: hidden;
+      background: var(--site-text-color-reverse);
+      border-radius: 0;
+      padding-inline: 24px;
+    }
+  }
+
+  .icon-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 78px;
+    height: 58px;
+    background: url('./images/search_nor.svg');
+    transition: background 1s;
+
+    &:hover {
+      background: url('./images/search_hover.svg');
+    }
+
+    img {
+      display: none;
+      width: 28px;
+    }
+  }
+
+  :global {
+    .ant-input-prefix {
+      margin-inline-end: 0;
+    }
+
+    .ant-input-suffix {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 0 var(--site-border-radius-lg) var(--site-border-radius-lg) 0;
+      padding-inline-start: 4px;
+    }
+
+    .ant-input-clear-icon {
+      display: flex;
+    }
+    .filter-select {
+      position: relative;
+      width: 150px;
+      height: 54px;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: calc(100% - 8px);
+        margin: 4px 0;
+        background: rgba(5, 5, 5, 0.06);
+        content: '';
+      }
+
+      .ant-select-selector {
+        width: 100%;
+        padding: 0 16px 0 11px;
+        color: #333333;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px 0 0 10px;
+      }
+
+      .ant-select-arrow {
+        inset-inline-end: 16px;
+      }
+
+      .ant-select-selection-item {
+        margin-left: -120px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.main-search-auto-popup {
+  width: calc(100% - 78px) !important;
+  border-radius: var(--site-border-radius-md);
+  box-shadow: 0 6px 18px 0 #2d2f3323;
+
+  .main-search-history-wrapper {
+    padding: 12px 20px;
+    font-size: var(--site-font-size-sm);
+    cursor: default;
+
+    .main-search-history-title {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-left: 8px;
+      color: #333333;
+      font-weight: bold;
+      line-height: 20px;
+
+      .delete-icon {
+        position: absolute;
+        top: 2px;
+        left: 50px;
+        display: none;
+        margin-left: 10px;
+        color: #999;
+        font-size: var(--site-font-size);
+        cursor: pointer;
+      }
+      &:hover {
+        .delete-icon {
+          display: inline-block;
+        }
+      }
+    }
+
+    .main-search-history-list {
+      margin-top: 8px;
+    }
+    .main-search-history-item {
+      display: inline-block;
+      max-width: 100%;
+      height: 28px;
+      padding: 0 12px;
+      line-height: 28px;
+      background: var(--site-hot-list-hover);
+      border-radius: 200px;
+      cursor: pointer;
+      &:hover {
+        color: var(--primary-color);
+        background: #cce4ff66;
+      }
+    }
+  }
+}

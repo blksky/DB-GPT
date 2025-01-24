@@ -1,16 +1,13 @@
-import Chat from '@/dbpages/components/Chat/components/chat';
 import { ChatSession, createMessage, EnumChatStoreType } from '@/dbpages/components/Chat/store';
 import { Breadcrumb, Button, Flex, Typography } from 'antd';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import styles from './index.module.less';
 
-import '@/dbpages/components/Chat/';
 import { getChatStoreMethod } from '@/dbpages/components/Chat/store/ModelType';
-import '@/dbpages/components/Chat/styles/globals.less';
-import '@/dbpages/components/Chat/styles/highlight.less';
-import '@/dbpages/components/Chat/styles/markdown.less';
+
+const Chat = lazy(() => import('@/dbpages/components/Chat/components/chat'));
 
 // const BI_URL = 'http://localhost:8080';
 const BI_URL = 'https://dw-kg.jd.com';
@@ -31,7 +28,8 @@ function DashboardDetail() {
   const refChat = useRef<any>();
   const refFrame = useRef<any>();
   const isEdit = params.type === '1';
-  const backUrl = window.location.origin + `/dashboard/detail/${params.id}/${encodeURIComponent(params.name)}/0`;
+  const backUrl =
+    window.location.origin + `/dbpages/dashboard/detail/${params.id}?name=${encodeURIComponent(params.name)}&type=0`;
 
   const chatStore = getChatStoreMethod(EnumChatStoreType.CHAT_SCOPE)();
 
@@ -120,7 +118,7 @@ function DashboardDetail() {
         <Breadcrumb
           items={[
             {
-              title: <Link to='/dbpages/dashboard'>智能报表</Link>,
+              title: <Link href='/dbpages/dashboard/list'>智能报表</Link>,
             },
             {
               title: params.name,
@@ -137,13 +135,15 @@ function DashboardDetail() {
         <iframe ref={refFrame} src={frameUrl} />
         {isEdit && (
           <div className={styles.boxChat}>
-            <Chat
-              ref={refChat}
-              scopeData={params.id}
-              windowTitleRender={windowTitleRender}
-              renderHello={renderHello}
-              chatType={EnumChatStoreType.CHAT_SCOPE}
-            />
+            <Suspense>
+              <Chat
+                ref={refChat}
+                scopeData={params.id}
+                windowTitleRender={windowTitleRender}
+                renderHello={renderHello}
+                chatType={EnumChatStoreType.CHAT_SCOPE}
+              />
+            </Suspense>
           </div>
         )}
       </Flex>

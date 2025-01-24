@@ -1,5 +1,5 @@
 import 'katex/dist/katex.min.css';
-import mermaid from 'mermaid';
+// import mermaid from 'mermaid';
 import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import RehypeHighlight from 'rehype-highlight';
@@ -11,7 +11,7 @@ import { copyToClipboard } from '../utils';
 
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import { ReactComponent as LoadingIcon } from '../icons/three-dots.svg';
+import LoadingIcon from '../icons/three-dots.svg';
 import { showImageModal } from './ui-lib';
 
 export function Mermaid(props: { code: string }) {
@@ -19,17 +19,17 @@ export function Mermaid(props: { code: string }) {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (props.code && ref.current) {
-      mermaid
-        .run({
-          nodes: [ref.current],
-          suppressErrors: true,
-        })
-        .catch(e => {
-          setHasError(true);
-          console.error('[Mermaid] ', e.message);
-        });
-    }
+    // if (props.code && ref.current) {
+    //   mermaid
+    //     .run({
+    //       nodes: [ref.current],
+    //       suppressErrors: true,
+    //     })
+    //     .catch(e => {
+    //       setHasError(true);
+    //       console.error('[Mermaid] ', e.message);
+    //     });
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.code]);
 

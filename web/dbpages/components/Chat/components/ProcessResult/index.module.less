@@ -1,0 +1,40 @@
+.process-result-tabs {
+  :global {
+    .ant-tabs-tab {
+      padding-inline: 15px;
+
+      & + .ant-tabs-tab {
+        margin-left: 10px;
+      }
+
+      .anticon {
+        font-size: 14px;
+      }
+    }
+
+    .ant-tabs-nav:before {
+      display: none;
+    }
+  }
+}
+
+.process-result-segmented {
+  :global {
+    .anticon {
+      font-size: 14px;
+    }
+  }
+}
+
+.process-resize-handle {
+  background: aliceblue;
+  opacity: 0;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.process-result-chat {
+  height: 100%;
+}

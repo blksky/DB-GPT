@@ -71,6 +71,10 @@ class ConversationVo(BaseModel):
     """
     select_param: Optional[Any] = Field(None, description="chat scene select param")
     """
+    chat scene select param scope
+    """
+    select_param_scope: Optional[Any] = Field(None, description="chat scene select param scope")
+    """
     llm model name
     """
     model_name: Optional[str] = Field(None, description="llm model name")

@@ -1,8 +1,8 @@
 import React from 'react';
 import Locale from '../chatLocales';
 import { ISSUE_URL } from '../constant';
-import { ReactComponent as GithubIcon } from '../icons/github.svg';
-import { ReactComponent as ResetIcon } from '../icons/reload.svg';
+import GithubIcon from '../icons/github.svg';
+import ResetIcon from '../icons/reload.svg';
 import { useSyncStore } from '../store/sync';
 import { IconButton } from './button';
 import { showConfirm } from './ui-lib';

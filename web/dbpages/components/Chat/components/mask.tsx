@@ -6,14 +6,14 @@ import styles from './mask.module.less';
 import { Button, Checkbox, Input, Select } from 'antd';
 import Locale, { ALL_LANG_OPTIONS, AllLangs, Lang } from '../chatLocales';
 import { ROLES } from '../client/api';
-import { ReactComponent as AddIcon } from '../icons/add.svg';
-import { ReactComponent as CloseIcon } from '../icons/close.svg';
-import { ReactComponent as CopyIcon } from '../icons/copy.svg';
-import { ReactComponent as DownloadIcon } from '../icons/download.svg';
-import { ReactComponent as DragIcon } from '../icons/drag.svg';
-import { ReactComponent as EditIcon } from '../icons/edit.svg';
-import { ReactComponent as EyeIcon } from '../icons/eye.svg';
-import { ReactComponent as UploadIcon } from '../icons/upload.svg';
+import AddIcon from '../icons/add.svg';
+import CloseIcon from '../icons/close.svg';
+import CopyIcon from '../icons/copy.svg';
+import DownloadIcon from '../icons/download.svg';
+import DragIcon from '../icons/drag.svg';
+import EditIcon from '../icons/edit.svg';
+import EyeIcon from '../icons/eye.svg';
+import UploadIcon from '../icons/upload.svg';
 import {
   ChatMessage,
   ModelConfig,

@@ -20,7 +20,7 @@ import Iconfont from '@/dbpages/components/Iconfont';
 import classNames from 'classnames';
 import { Constants } from '../../helper/Constants';
 import { getFormatedSql } from '../ProcessResult/ModelType';
-import './ProcessSQL.less';
+import styles from './ProcessSQL.module.less';
 
 type ProcessSQLProps = {
   isExpertMode?: boolean;
@@ -67,11 +67,11 @@ const ProcessSQL: React.FC<ProcessSQLProps> = ({ flowType, flowData }) => {
     }
 
     return (
-      <Flex gap={10} align='center' className='sql-type-list'>
+      <Flex gap={10} align='center' className={styles['sql-type-list']}>
         <Tooltip color={Constants.TOOLTIP_COLOR} title={showSqlType ? '收起' : '展开'}>
           <div
             onClick={() => setShowSqlType(!showSqlType)}
-            className={classNames('sql-type-list-arrow', { active: showSqlType })}
+            className={classNames(styles['sql-type-list-arrow'], { [styles['active']]: showSqlType })}
           >
             <Iconfont code='&#xe641;' />
           </div>
@@ -80,7 +80,7 @@ const ProcessSQL: React.FC<ProcessSQLProps> = ({ flowType, flowData }) => {
         {itemList.map(type => (
           <div
             key={type}
-            className={`sql-type-item ${showSqlType && activeSqlType === type ? 'active' : ''}`}
+            className={`${styles['sql-type-item']} ${showSqlType && activeSqlType === type ? styles['active'] : ''}`}
             onClick={() => handleActiveSqlType(type)}
           >
             {type}
@@ -104,13 +104,13 @@ const ProcessSQL: React.FC<ProcessSQLProps> = ({ flowType, flowData }) => {
       const stepData = flowData.step_list.find(d => d.step_id === fseStepId);
       if (stepData?.result?.few_shot_examples && typeof stepData.result.few_shot_examples === 'object') {
         return (
-          <SyntaxHighlighter className='process-result-sql' language='json' style={solarizedlight}>
+          <SyntaxHighlighter className={styles['process-result-sql']} language='json' style={solarizedlight}>
             {JSON.stringify(stepData.result.few_shot_examples, null, 2)}
           </SyntaxHighlighter>
         );
       }
       return (
-        <SyntaxHighlighter className='process-result-sql' language='text' style={solarizedlight}>
+        <SyntaxHighlighter className={styles['process-result-sql']} language='text' style={solarizedlight}>
           {stepData?.result?.few_shot_examples && stepData.result.few_shot_examples}
         </SyntaxHighlighter>
       );
@@ -118,7 +118,7 @@ const ProcessSQL: React.FC<ProcessSQLProps> = ({ flowType, flowData }) => {
     if (activeSqlType === EnumSqlType.possible_sql) {
       const stepData = flowData.step_list.find(d => d.step_id === csgStepId);
       return (
-        <SyntaxHighlighter className='process-result-sql' language='sqlite' style={solarizedlight}>
+        <SyntaxHighlighter className={styles['process-result-sql']} language='sqlite' style={solarizedlight}>
           {getFormatedSql(stepData?.result?.possible_sql)}
         </SyntaxHighlighter>
       );
@@ -127,7 +127,7 @@ const ProcessSQL: React.FC<ProcessSQLProps> = ({ flowType, flowData }) => {
       const stepData = flowData.step_list.find(d => d.step_id === srStepId);
       console.log('stepData?.result?.predicted_sql', stepData?.result?.predicted_sql);
       return (
-        <SyntaxHighlighter className='process-result-sql' language='sqlite' style={solarizedlight}>
+        <SyntaxHighlighter className={styles['process-result-sql']} language='sqlite' style={solarizedlight}>
           {getFormatedSql(stepData?.result?.predicted_sql)}
         </SyntaxHighlighter>
       );

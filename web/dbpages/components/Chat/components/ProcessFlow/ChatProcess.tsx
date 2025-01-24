@@ -1,10 +1,9 @@
-import { PREFIX_CLS } from '@/pages/dbpages/components/ChatSdk/common/constants';
 import { CheckCircleFilled, CloseCircleFilled, LoadingOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
-import { ReactComponent as LoadingIcon } from '../../icons/three-dots.svg';
-// import ICON_READY from '../../images/icons_ready.svg';
-import './ChatProcess.less';
+import LoadingIcon from '../../icons/three-dots.svg';
+// import ICON_READY from '../../images/icons_ready.svg?url';
+import styles from './ChatProcess.module.less';
 
 type ChatProcessProps = {
   title?: string;
@@ -19,22 +18,22 @@ type ChatProcessProps = {
   titleExtraRender?: ReactNode | (() => ReactNode | null);
 };
 
-export const prefixCls = `${PREFIX_CLS}-item`;
+export const prefixCls = `ss-chat-item`;
 
 export const getNode = (tipTitle: ReactNode, tipNode?: ReactNode, failed?: boolean, loading?: boolean) => {
   // let tipIcon = <img alt="" className={`${prefixCls}-step-icon`} src={ICON_READY} />;
-  let tipIcon = <CheckCircleFilled className={`${prefixCls}-step-success-icon`} />;
+  let tipIcon = <CheckCircleFilled className={styles[`${prefixCls}-step-success-icon`]} />;
   if (loading) {
-    tipIcon = <LoadingOutlined className={`${prefixCls}-step-loading-icon`} />;
+    tipIcon = <LoadingOutlined className={styles[`${prefixCls}-step-loading-icon`]} />;
   } else if (failed) {
-    tipIcon = <CloseCircleFilled className={`${prefixCls}-step-error-icon`} />;
+    tipIcon = <CloseCircleFilled className={styles[`${prefixCls}-step-error-icon`]} />;
   }
 
   return (
-    <div className={`${prefixCls}-parse-tip`}>
-      <div className={`${prefixCls}-title-bar`}>
+    <div className={styles[`${prefixCls}-parse-tip`]}>
+      <div className={styles[`${prefixCls}-title-bar`]}>
         {tipIcon}
-        <div className={`${prefixCls}-step-title`}>
+        <div className={styles[`${prefixCls}-step-title`]}>
           {tipTitle}
           {tipNode === undefined && <LoadingIcon className='markdown-body-loading' />}
         </div>
@@ -42,9 +41,9 @@ export const getNode = (tipTitle: ReactNode, tipNode?: ReactNode, failed?: boole
       {(tipNode || tipNode === null) && (
         <div
           className={classNames(
-            `${prefixCls}-content-container`,
-            tipNode === null && `${prefixCls}-empty-content-container`,
-            failed && `${prefixCls}-content-container-failed`,
+            styles[`${prefixCls}-content-container`],
+            tipNode === null && styles[`${prefixCls}-empty-content-container`],
+            failed && styles[`${prefixCls}-content-container-failed`],
           )}
         >
           {tipNode}
@@ -66,7 +65,7 @@ export const ChatProcess: React.FC<ChatProcessProps> = ({
   contentRender,
   titleExtraRender,
 }) => {
-  const prefixCls = `${PREFIX_CLS}-item`;
+  const prefixCls = `ss-chat-item`;
 
   if (loading && !loadingShowContent) {
     return getNode(loadingText, null, false, true);
@@ -76,7 +75,7 @@ export const ChatProcess: React.FC<ChatProcessProps> = ({
     return getNode(
       <>
         {title}生成失败
-        {timeCost && isDeveloper && <span className={`${prefixCls}-title-tip`}>(耗时: {timeCost}ms)</span>}
+        {timeCost && isDeveloper && <span className={styles[`${prefixCls}-title-tip`]}>(耗时: {timeCost}ms)</span>}
       </>,
       errorMsg,
       true,
@@ -89,10 +88,10 @@ export const ChatProcess: React.FC<ChatProcessProps> = ({
   const titleExtra = typeof titleExtraRender === 'function' ? titleExtraRender?.() : titleExtraRender;
 
   return getNode(
-    <div className={`${prefixCls}-title-bar`}>
+    <div className={styles[`${prefixCls}-title-bar`]}>
       <div>
         {title}
-        {timeCost && isDeveloper && <span className={`${prefixCls}-title-tip`}>(耗时: {timeCost}ms)</span>}
+        {timeCost && isDeveloper && <span className={styles[`${prefixCls}-title-tip`]}>(耗时: {timeCost}ms)</span>}
         {titleExtra ? '：' : ''}
       </div>
       {titleExtra}

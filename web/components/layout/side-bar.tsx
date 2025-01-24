@@ -284,8 +284,8 @@ function SideBar() {
             }}
           />
         ),
-        path: '/dbpages/dashboard/dashboardList',
-        isActive: pathname.startsWith('/dashboardList'),
+        path: '/dbpages/dashboard/list',
+        isActive: pathname.startsWith('/dbpages/dashboard'),
       },
       {
         key: 'workspace',
@@ -303,7 +303,7 @@ function SideBar() {
           />
         ),
         path: '/dbpages/workspace',
-        isActive: pathname.startsWith('/workspace'),
+        isActive: pathname.startsWith('/dbpages/workspace'),
       },
       {
         key: 'explore',

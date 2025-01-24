@@ -5,8 +5,8 @@ require('../polyfill');
 import React, { useEffect, useState } from 'react';
 import styles from './home.module.less';
 
-import { ReactComponent as BotIcon } from '../icons/bot.svg';
-import { ReactComponent as LoadingIcon } from '../icons/three-dots.svg';
+import BotIcon from '../icons/bot.svg';
+import LoadingIcon from '../icons/three-dots.svg';
 
 import { getCSSVar, useMobileScreen } from '../utils';
 

@@ -1,13 +1,12 @@
 import MarkDownContext from '@/new-components/common/MarkdownContext';
-import { LinkOutlined } from '@ant-design/icons';
-import type { TabsProps } from 'antd';
-import { Divider, Drawer, Tabs, Typography } from 'antd';
+import { Divider, Drawer, Flex, Tabs, TabsProps, Typography } from 'antd';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 
 const ReferencesContentView: React.FC<{ references: any }> = ({ references }) => {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
+  const [activeKey, setActiveKey] = useState<string>();
 
   // 是否移动端页面
   const isMobile = useMemo(() => {
@@ -15,7 +14,7 @@ const ReferencesContentView: React.FC<{ references: any }> = ({ references }) =>
   }, [router]);
 
   const items: TabsProps['items'] = useMemo(() => {
-    return references?.knowledge?.map((reference: any) => {
+    return references?.map((reference: any) => {
       return {
         label: (
           <div style={{ maxWidth: '120px' }}>
@@ -31,7 +30,11 @@ const ReferencesContentView: React.FC<{ references: any }> = ({ references }) =>
         key: reference.name,
         children: (
           <div className='h-full overflow-y-auto'>
-            {reference?.chunks?.map((chunk: any) => <MarkDownContext key={chunk.id}>{chunk.content}</MarkDownContext>)}
+            <Flex vertical={true} gap={24}>
+              {reference?.chunks?.map((chunk: any) => (
+                <MarkDownContext key={chunk.id}>{chunk.content}</MarkDownContext>
+              ))}
+            </Flex>
           </div>
         ),
       };
@@ -41,10 +44,20 @@ const ReferencesContentView: React.FC<{ references: any }> = ({ references }) =>
   return (
     <div>
       <Divider className='mb-1 mt-0' dashed />
-      <div className='flex text-sm gap-2 text-blue-400' onClick={() => setOpen(true)}>
-        <LinkOutlined />
-        <span className='text-sm'>查看回复引用</span>
-      </div>
+      {references.map((reference: any) => {
+        return (
+          <div
+            className='flex text-sm gap-2 text-blue-400'
+            onClick={() => {
+              setActiveKey(reference.name);
+              setOpen(true);
+            }}
+          >
+            <span className='text-sm'>{reference.name}</span>
+          </div>
+        );
+      })}
+
       <Drawer
         open={open}
         title='回复引用'
@@ -54,7 +67,7 @@ const ReferencesContentView: React.FC<{ references: any }> = ({ references }) =>
         className='p-0'
         {...(!isMobile && { width: '30%' })}
       >
-        <Tabs items={items} size='small' />
+        <Tabs activeKey={activeKey} items={items} size='small' />
       </Drawer>
     </div>
   );

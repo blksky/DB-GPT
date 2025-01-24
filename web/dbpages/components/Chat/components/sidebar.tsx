@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { ReactComponent as DeleteIcon } from '../icons/delete.svg';
-import { ReactComponent as DragIcon } from '../icons/drag.svg';
+import DeleteIcon from '../icons/delete.svg';
+import DragIcon from '../icons/drag.svg';
 import { IconButton } from './button';
 import styles from './home.module.less';
 

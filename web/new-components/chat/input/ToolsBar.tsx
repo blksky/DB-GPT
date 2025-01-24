@@ -1,13 +1,13 @@
 import { apiInterceptors, clearChatHistory } from '@/client/api';
 import { ChatContentContext } from '@/pages/chat';
-import { ClearOutlined, LoadingOutlined, PauseCircleOutlined, RedoOutlined } from '@ant-design/icons';
-import type { UploadFile } from 'antd';
-import { Spin, Tooltip } from 'antd';
+import { ClearOutlined, DeleteOutlined, LoadingOutlined, PauseCircleOutlined, RedoOutlined } from '@ant-design/icons';
+import { Spin, Tooltip, UploadFile } from 'antd';
 import classNames from 'classnames';
 import Image from 'next/image';
 import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { getTableFileIcon } from '@/dbpages/utils/FileIconUtl';
 import ModelSwitcher from './ModelSwitcher';
 import Resource from './Resource';
 
@@ -34,6 +34,8 @@ const ToolsBar: React.FC<{
     temperatureValue,
     maxNewTokensValue,
     resourceValue,
+    resourceScopeValue,
+    setResourceScopeValue,
     setTemperatureValue,
     setMaxNewTokensValue,
     refreshHistory,
@@ -85,6 +87,10 @@ const ToolsBar: React.FC<{
                 typeof resourceValue === 'string'
                   ? resourceValue
                   : JSON.stringify(resourceValue) || currentDialogue.select_param,
+              select_param_scope:
+                typeof resourceScopeValue === 'object'
+                  ? resourceScopeValue
+                  : (resourceScopeValue && JSON.parse(resourceScopeValue)) || currentDialogue.select_param_scope,
             }),
           });
           setTimeout(() => {
@@ -189,8 +195,30 @@ const ToolsBar: React.FC<{
           </div>
         </div>
       )}
+      {!!resourceScopeValue?.documents?.length && (
+        <div className='group/item flex mt-2 gap-4'>
+          {resourceScopeValue.documents.map((document: any) => (
+            <div className='flex items-center justify-between max-w-[200px] border border-[#e3e4e6] dark:border-[rgba(255,255,255,0.6)] rounded-lg p-2'>
+              <div className='flex items-center'>
+                {getTableFileIcon({ docName: document.doc_name }, 'mr-2')}
+                <span className='text-sm text-[#1c2533] dark:text-white line-clamp-1'>{document.doc_name}</span>
+                <Tooltip title='移除'>
+                  <DeleteOutlined
+                    className='ml-2 cursor-pointer'
+                    onClick={() => {
+                      setResourceScopeValue({
+                        ...resourceScopeValue,
+                        documents: resourceScopeValue.documents.filter((item: any) => item.id !== document.id),
+                      });
+                    }}
+                  />
+                </Tooltip>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
-
 export default ToolsBar;

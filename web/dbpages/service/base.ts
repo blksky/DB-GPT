@@ -50,10 +50,7 @@ const desktopServiceUrl = `http://127.0.0.1:10824'`;
 const prodServiceUrl = typeof window !== 'undefined' ? window.location.origin : '';
 
 // 是否自定义了 _BaseURL || 是否为桌面端地址
-const baseURL =
-  typeof localStorage !== 'undefined' &&
-  (localStorage.getItem('_BaseURL') ||
-    (location.href.indexOf('dist/index.html') > -1 ? desktopServiceUrl : prodServiceUrl));
+const baseURL = process.env.API_BASE_URL || prodServiceUrl;
 
 const appGatewayParams = typeof localStorage !== 'undefined' && localStorage.getItem('app-gateway-params');
 

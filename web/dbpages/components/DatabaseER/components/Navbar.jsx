@@ -1,7 +1,7 @@
 import { IconMenu } from '@douyinfe/semi-icons';
 import { Drawer } from 'antd';
+import Link from 'next/link';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../assets/logo_light_160.png';
 
 export default function Navbar() {
@@ -11,7 +11,7 @@ export default function Navbar() {
     <>
       <div className='py-4 px-12 sm:px-4 flex justify-between items-center'>
         <div className='flex items-center justify-between w-full'>
-          <Link to='/web/public'>
+          <Link href='/web/public'>
             <img src={logo} alt='logo' className='h-[48px] sm:h-[32px]' />
           </Link>
           <div className='md:hidden flex gap-12'>
@@ -21,10 +21,10 @@ export default function Navbar() {
             >
               Features
             </Link>
-            <Link to='/editor' className='text-lg font-semibold hover:text-sky-800 transition-colors duration-300'>
+            <Link href='/editor' className='text-lg font-semibold hover:text-sky-800 transition-colors duration-300'>
               Editor
             </Link>
-            <Link to='/templates' className='text-lg font-semibold hover:text-sky-800 transition-colors duration-300'>
+            <Link href='/templates' className='text-lg font-semibold hover:text-sky-800 transition-colors duration-300'>
               Templates
             </Link>
           </div>
@@ -79,11 +79,11 @@ export default function Navbar() {
           Features
         </Link>
         <hr />
-        <Link to='/editor' className='hover:bg-zinc-100 block p-3 text-base font-semibold'>
+        <Link href='/editor' className='hover:bg-zinc-100 block p-3 text-base font-semibold'>
           Editor
         </Link>
         <hr />
-        <Link to='/templates' className='hover:bg-zinc-100 block p-3 text-base font-semibold'>
+        <Link href='/templates' className='hover:bg-zinc-100 block p-3 text-base font-semibold'>
           Templates
         </Link>
         <hr />

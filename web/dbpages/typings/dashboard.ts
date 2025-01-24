@@ -15,10 +15,11 @@ export interface IDashboardItem {
   name?: string;
   description?: string;
   /** 保存图表布局 二维数据 number[][]  */
-  schema?: string;
+  content?: string;
   chartIds?: number[];
   gmtModified?: number;
   gmtCreate?: number;
+  user_id?: number;
 }
 
 // export interface IChartDataItem {

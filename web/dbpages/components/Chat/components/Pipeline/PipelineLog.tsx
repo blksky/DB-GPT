@@ -7,7 +7,7 @@ import { WebLinksAddon } from 'xterm-addon-web-links';
 // @ts-ignore
 import elementResizeEvent from 'element-resize-event';
 import 'xterm/css/xterm.css';
-import './PipelineLog.less';
+import styles from './PipelineLog.module.less';
 
 /**
  * 延时等待若干毫秒
@@ -85,7 +85,7 @@ const PipelineLog: FC<PipelineLogProps> = props => {
       breakRef.current = true;
     };
   }, []);
-  return <div ref={terminalDomRef} className='pipeline-log-text' />;
+  return <div ref={terminalDomRef} className={styles['pipeline-log-text']} />;
 };
 
 export default PipelineLog;

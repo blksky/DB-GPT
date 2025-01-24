@@ -1,6 +1,6 @@
 import { EnumSqlFlowType, IFlowData } from '@/dbpages/components/SqlFlow/ModelType';
 import { Table } from 'antd';
-import './index.less';
+import styles from './index.module.less';
 
 type TableViewProps = {
   isExpertMode?: boolean;
@@ -33,7 +33,7 @@ const TableView: React.FC<TableViewProps> = ({ flowData, srStepId }) => {
       pagination={false}
       columns={tableColumns}
       dataSource={dataSource}
-      className='process-result-table'
+      className={styles['process-result-table']}
       scroll={{ x: 'max-content', y: 'calc(100vh - 350px)' }}
     />
   );

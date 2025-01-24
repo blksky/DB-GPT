@@ -337,10 +337,10 @@ const extraComponents: MarkdownComponent = {
       </div>
     );
   },
-  references: function ({ children }) {
-    if (children) {
+  references: function (params: any) {
+    if (params.children || params?.references) {
       try {
-        const referenceData = JSON.parse(children as string);
+        const referenceData = params.children ? JSON.parse(params.children as string) : params;
         const references = referenceData.references;
         return <ReferencesContent references={references} />;
       } catch {

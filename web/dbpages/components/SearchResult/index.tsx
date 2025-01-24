@@ -1,6 +1,3 @@
-import Iconfont from '../Iconfont';
-import StateIndicator from '../StateIndicator';
-import Tabs, { ITabItem } from '../Tabs';
 import classnames from 'classnames';
 import {
   createContext,
@@ -14,13 +11,17 @@ import {
   useRef,
   useState,
 } from 'react';
+import Iconfont from '../Iconfont';
+import StateIndicator from '../StateIndicator';
+import Tabs, { ITabItem } from '../Tabs';
 // import Output from '@/pages/dbpages/components/Output';
-import EmptyImg from '@/dbpages/assets/img/empty.svg';
-import i18n from '../../i18n';
+// @ts-ignore
+import EmptyImg from '@/dbpages/assets/img/empty.svg?url';
 import sqlServer, { IExecuteSqlParams } from '@/dbpages/service/sql';
-import { IManageResultData, IResultConfig } from '../../typings';
 import { Spin } from 'antd';
 import { v4 as uuidV4 } from 'uuid';
+import i18n from '../../i18n';
+import { IManageResultData, IResultConfig } from '../../typings';
 import StatusBar from './components/StatusBar';
 import TableBox from './components/TableBox';
 import styles from './index.module.less';

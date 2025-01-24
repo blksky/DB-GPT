@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // @ts-ignore
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import './PipelineTemplate.less';
+import styles from './PipelineTemplate.module.less';
 
 type PipelineResultProps = {
   template?: string;
@@ -28,7 +28,7 @@ const PipelineTemplate: FC<PipelineResultProps> = props => {
   }, [props.template]);
 
   return (
-    <SyntaxHighlighter className='pipeline-result-template' language='text' style={solarizedlight}>
+    <SyntaxHighlighter className={styles['pipeline-result-template']} language='text' style={solarizedlight}>
       {content}
     </SyntaxHighlighter>
   );

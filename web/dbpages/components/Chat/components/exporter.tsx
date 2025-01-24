@@ -6,14 +6,14 @@ import { IconButton } from './button';
 import styles from './exporter.module.less';
 import { List, ListItem, Modal, showImageModal, showModal, showToast } from './ui-lib';
 
-import { ReactComponent as BotIcon } from '../icons/bot.png';
-import { ReactComponent as ChatGptIcon } from '../icons/chatgpt.png';
-import { ReactComponent as CopyIcon } from '../icons/copy.svg';
-import { ReactComponent as ShareIcon } from '../icons/share.svg';
-import { ReactComponent as LoadingIcon } from '../icons/three-dots.svg';
+import BotIcon from '../icons/bot.png';
+import ChatGptIcon from '../icons/chatgpt.png';
+import CopyIcon from '../icons/copy.svg';
+import ShareIcon from '../icons/share.svg';
+import LoadingIcon from '../icons/three-dots.svg';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ReactComponent as DownloadIcon } from '../icons/download.svg';
+import DownloadIcon from '../icons/download.svg';
 import { Avatar } from './emoji';
 import { MessageSelector, useMessageSelector } from './message-selector';
 

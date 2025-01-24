@@ -19,6 +19,7 @@ const ChatInputPanel: React.FC<{ ctrl: AbortController }> = ({ ctrl }) => {
     temperatureValue,
     maxNewTokensValue,
     resourceValue,
+    resourceScopeValue,
     refreshDialogList,
   } = useContext(ChatContentContext);
 
@@ -55,6 +56,10 @@ const ChatInputPanel: React.FC<{ ctrl: AbortController }> = ({ ctrl }) => {
           typeof resourceValue === 'string'
             ? resourceValue
             : JSON.stringify(resourceValue) || currentDialogue.select_param,
+        select_param_scope:
+          typeof resourceScopeValue === 'object'
+            ? resourceScopeValue
+            : (resourceScopeValue && JSON.parse(resourceScopeValue)) || currentDialogue.select_param_scope,
       }),
     });
     // 如果应用进来第一次对话，刷新对话列表

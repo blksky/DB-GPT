@@ -22,6 +22,7 @@ from dbgpt.core import (
 from dbgpt.rag.retriever.rerank import RerankEmbeddingsRanker
 from dbgpt.rag.retriever.rewrite import QueryRewrite
 from dbgpt.serve.rag.retriever.knowledge_space import KnowledgeSpaceRetriever
+from dbgpt.storage.vector_store.filters import MetadataFilters,MetadataFilter,FilterOperator
 from dbgpt.util.tracer import root_tracer, trace
 
 CFG = Config()
@@ -39,6 +40,7 @@ class ChatKnowledge(BaseChat):
             - current_user_input: (str) current user input
             - model_name:(str) llm model name
             - select_param:(str) space name
+            - select_param_scope: Dict {documents: [{id, space, doc_name}]}
         """
         from dbgpt.rag.embedding.embedding_factory import RerankEmbeddingFactory
 
@@ -74,6 +76,10 @@ class ChatKnowledge(BaseChat):
         if len(spaces) != 1:
             raise Exception(f"invalid space name:{self.knowledge_space}")
         space = spaces[0]
+        document_ids = []
+
+        if  "select_param_scope" in chat_param and chat_param["select_param_scope"] is not None and "documents" in chat_param["select_param_scope"]:
+            document_ids = [document["id"] for document in chat_param["select_param_scope"]['documents']]
 
         query_rewrite = None
         if CFG.KNOWLEDGE_SEARCH_REWRITE:
@@ -95,6 +101,7 @@ class ChatKnowledge(BaseChat):
                 retriever_top_k = max(CFG.RERANK_TOP_K, 20)
         self._space_retriever = KnowledgeSpaceRetriever(
             space_id=space.id,
+            document_ids=document_ids,
             top_k=retriever_top_k,
             query_rewrite=query_rewrite,
             rerank=reranker,
@@ -104,12 +111,15 @@ class ChatKnowledge(BaseChat):
         self.prompt_template.template_is_strict = False
         self.relations = None
         self.chunk_dao = DocumentChunkDao()
-        document_dao = KnowledgeDocumentDao()
-        documents = document_dao.get_documents(
-            query=KnowledgeDocumentEntity(space=space.name)
-        )
-        if len(documents) > 0:
-            self.document_ids = [document.id for document in documents]
+        if len(document_ids) > 0:
+            self.document_ids = document_ids
+        else:
+            document_dao = KnowledgeDocumentDao()
+            documents = document_dao.get_documents(
+                query=KnowledgeDocumentEntity(space=space.name)
+            )
+            if len(documents) > 0:
+                self.document_ids = [document.id for document in documents]
 
     async def stream_call(self):
         last_output = None
@@ -258,5 +268,5 @@ class ChatKnowledge(BaseChat):
             "execute_similar_search", metadata={"query": query}
         ):
             return await self._space_retriever.aretrieve_with_scores(
-                query, self.recall_score
+                query, self.recall_score, filters = MetadataFilters(filters=[MetadataFilter(key="document_id", operator=FilterOperator.IN, value=self.document_ids)])
             )

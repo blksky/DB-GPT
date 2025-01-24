@@ -23,7 +23,7 @@ import PieChart from './PieChart';
 import RadarChart from './RadarChart';
 import TableView from './TableView';
 
-import './index.less';
+import styles from './index.module.less';
 
 type ProcessResultProps = {
   isExpertMode?: boolean;
@@ -37,7 +37,7 @@ const ProcessResult: React.FC<ProcessResultProps> = ({ flowType, flowData, isExp
   const titleExtraRender = () => {
     return (
       <Segmented
-        className='process-result-segmented'
+        className={styles['process-result-segmented']}
         value={resultShowType}
         onChange={setResultShowType}
         options={[

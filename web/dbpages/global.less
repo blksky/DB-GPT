@@ -1,0 +1,171 @@
+.common-width {
+  width: 100%;
+}
+
+.common-table {
+  background: white;
+  border: 1px solid rgba(5, 5, 5, 0.06);
+  border-radius: 6px;
+  padding-inline: 24px;
+  padding-block-end: 16px;
+
+  .ant-table-title {
+    padding-inline: 0;
+    padding-block: 16px;
+  }
+
+  .ant-table {
+    .ant-table-body {
+      overflow-y: auto !important;
+    }
+  }
+}
+
+.common-search {
+  padding: 24px;
+  background: white;
+  border: 1px solid rgba(5, 5, 5, 0.06);
+  border-radius: 6px;
+
+  .common-search-btn {
+    margin-right: -12px;
+  }
+}
+
+.table-item-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.light() {
+  --primary-color: var(--antd-primary-color);
+  --primary-1: var(--antd-primary-1);
+  --link-color: var(--antd-link-color);
+  --link-primary-1: var(--primary-1);
+  --site-tag-bg-color: #f4f4f4;
+  --site-tag-bg-hover-color: var(--primary-1);
+  --site-bg: whitesmoke;
+  --site-panel-bg: #ffffff;
+  --site-text-color: var(--antd-text-color);
+  --site-text-color-reverse: #ffffff;
+  --site-text2-color: #333333;
+  --site-icon-light-color: #8a9099;
+  --site-text-light-color: var(--site-icon-light-color);
+  --site-text-light-more-color: #999999;
+  --site-text-light-more2-color: #666666;
+  --site-chat-doc-color: #5c6f91;
+  --site-chat-doc-line-color: #c7d7e6;
+  --site-btn-border-hover-color: #b6babf;
+  --site-border-color: #edeeef;
+  --site-border-color-light: #f0f0f0;
+  --site-tag-action-hover: #f0f0f0;
+  --site-hot-list-hover: #f7f7f7;
+  --site-list-row-hover: #cce4ff66;
+  --site-success-color: #35ad8a;
+  --site-error-color: #fc1534;
+  --site-warn-color: #ffc841;
+  --site-statistic-color: #4c5869;
+  --chat-closer-color: #a0a0a0;
+  --chat-closer-color-hover: #b7b8b8;
+  --bigdataos-disabled-color: #b7bbc5;
+  --bigdataos-item-hover-bg: #eef0f5;
+  --bigdataos-primary-color: var(--primary-color);
+  //--ant-primary-color: @primary-color;
+}
+.light-detail() {
+  --site-content-split-lg: 24px;
+  --site-content-split-bg: 16px;
+  --site-content-split-content: 20px;
+  --site-content-split-six: 6px;
+  --site-border-radius-six: 6px;
+  --site-title-font-size: 24px;
+  --site-detail-doc-color: #626973;
+  --site-divider-color: #e9ecf0;
+  --site-btn-hover-color: #0064ff;
+  --site-icon-hover-color: var(--site-list-row-hover);
+  --site-btn-border-color: #e5e5e5;
+  --site-btn-hover-border-color: #bfbfbf;
+  --site-input-count-suffix-color: #bfbfbf;
+  --site-doc-hover-color: #f7f7f7;
+  --site-title-color: #3d3d3d;
+  --detail-tag-color: #f7f7f7;
+  --detail-tag-color-hover: #f0f0f0;
+}
+.light-center() {
+  --center-right-width: 928px;
+  --site-content-split-four: 4px;
+  --site-modal-close-icon-size: 18px;
+  --site-drawer-border-radius: 16px;
+  --site-drawer-bg: #f5f5f5;
+  --site-drawer-color: #f0f0f0;
+  --center-btn-split: 14px;
+  --center-label-name: 24px;
+  --center-suffix-split: 10px;
+  --center-perfect-status-color: #f5f7fa;
+  --center-upload-status-color: #0078ff;
+}
+.light-notice() {
+  --site-badge-default: #d9d9d9;
+}
+.home() {
+  --site-line-height-lg: 24px;
+  --site-line-height-sm: 20px;
+  --site-padding-sm: 6px;
+  --site-margin-lg: 16px;
+  --site-margin-md: 12px;
+  --site-margin: 10px;
+  --site-margin-sm: 2px;
+}
+body {
+  .light();
+  .light-detail();
+  .light-center();
+  .light-notice();
+  .home();
+  --screen-zoom: 1;
+  --max-screen-width: 100vw;
+  --max-screen-height: 100vh;
+  --site-header-height: 48px;
+  --site-breadcrumb-height: 46px;
+  --site-footer-height: 60px;
+  --site-content-width: min(1400px, calc(100% - 44px));
+
+  --site-content-split-lg: 24px;
+  --site-content-split-md-lg: 16px;
+  --site-content-split: 12px;
+  --site-content-split-md: 8px;
+  --site-content-split-sm: 4px;
+  --site-right-width: 460px;
+  --site-border-radius-lg: 12px;
+  --site-border-radius-md: 8px;
+  --site-border-radius: 4px;
+  --site-border-radius-sm: 2px;
+  --site-font-size-lg: 16px;
+  --site-font-size: 14px;
+  --site-font-size-sm: 12px;
+  --site-font-weight: 400;
+  --site-font-weight-md: 500;
+  --site-font-weight-bd: 700;
+  --site-padding-lg: 24px;
+  --site-padding-md: 16px;
+  --site-padding-bg: 14px;
+  --site-padding: 12px;
+  --site-padding-sm: 8px;
+  --site-line-height-md: 24px;
+  --site-line-height: 22px;
+  --site-line-height-sm-md: 20px;
+  --site-line-height-sm: 18px;
+  --site-form-item-height: 32px;
+  --site-input-border-focus: 2px;
+
+  .ant-tooltip {
+    --antd-arrow-background-color: rgba(255, 255, 255, 1);
+
+    .ant-tooltip-inner {
+      color: #333333;
+      font-size: 12px;
+      line-height: 20px;
+      background: white;
+    }
+  }
+}

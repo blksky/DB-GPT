@@ -4,16 +4,24 @@ import ICON_UNKNOWN from '@/dbpages/images/file/icons_Unknown.png';
 import ICON_VIDEO from '@/dbpages/images/file/icons_Video.png';
 import ICON_ZIP from '@/dbpages/images/file/icons_zip.png';
 
-import ICON_DOC from '@/dbpages/images/kgSpace/icons_doc.svg';
-import ICON_DOCX from '@/dbpages/images/kgSpace/icons_docx.svg';
-import ICON_FOLDER from '@/dbpages/images/kgSpace/icons_folder.svg';
-import ICON_PDF from '@/dbpages/images/kgSpace/icons_pdf.svg';
-import ICON_PPT from '@/dbpages/images/kgSpace/icons_ppt.svg';
-import ICON_PPTX from '@/dbpages/images/kgSpace/icons_pptx.svg';
-import ICON_XLS from '@/dbpages/images/kgSpace/icons_xls.svg';
-import ICON_XLSX from '@/dbpages/images/kgSpace/icons_xlsx.svg';
+// @ts-ignore
+import ICON_DOC from '@/dbpages/images/kgSpace/icons_doc.svg?url';
+// @ts-ignore
+import ICON_DOCX from '@/dbpages/images/kgSpace/icons_docx.svg?url';
+// @ts-ignore
+import ICON_FOLDER from '@/dbpages/images/kgSpace/icons_folder.svg?url';
+// @ts-ignore
+import ICON_PDF from '@/dbpages/images/kgSpace/icons_pdf.svg?url';
+// @ts-ignore
+import ICON_PPT from '@/dbpages/images/kgSpace/icons_ppt.svg?url';
+// @ts-ignore
+import ICON_PPTX from '@/dbpages/images/kgSpace/icons_pptx.svg?url';
+// @ts-ignore
+import ICON_XLS from '@/dbpages/images/kgSpace/icons_xls.svg?url';
+// @ts-ignore
+import ICON_XLSX from '@/dbpages/images/kgSpace/icons_xlsx.svg?url';
 
-import {getFileExt} from './FileUtil';
+import { getFileExt } from './FileUtil';
 
 /**
  * 文件或目录信息

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styles from './index.module.less';
-// import AIImg from '@/pages/dbpages/assets/img/nl2sql.svg';
+// import AIImg from '@/pages/dbpages/assets/img/nl2sql.svg?url';
 import { Constants } from '@/dbpages/components/Chat/helper/Constants';
 import Iconfont from '@/dbpages/components/Iconfont';
-import i18n from '../../../../i18n';
 import { AIType } from '@/dbpages/typings/ai';
 import { MessageOutlined } from '@ant-design/icons';
 import { Button, Input, Popover, Radio, Select, Space, Tooltip } from 'antd';
+import i18n from '../../../../i18n';
 
 export const enum SyncModelType {
   AUTO = 0,

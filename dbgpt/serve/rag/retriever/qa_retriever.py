@@ -29,6 +29,7 @@ class QARetriever(BaseRetriever):
         top_k: Optional[int] = 4,
         embedding_fn: Optional[Any] = 4,
         lambda_value: Optional[float] = 1e-5,
+        document_ids: Optional[list] = None,
     ):
         """
         Args:
@@ -43,11 +44,15 @@ class QARetriever(BaseRetriever):
         self._document_dao = KnowledgeDocumentDao()
         self._chunk_dao = DocumentChunkDao()
         self._embedding_fn = embedding_fn
+        self._document_ids = document_ids
 
         space = self._space_dao.get_one({"id": space_id})
         if not space:
             raise ValueError("space not found")
-        self.documents = self._document_dao.get_list({"space": space.name})
+        document_params = {"space": space.name}
+        if document_ids is not None and len(document_ids) > 0:
+            document_params["id"] = document_ids
+        self.documents = self._document_dao.get_list(document_params)
         self._executor = CFG.SYSTEM_APP.get_component(
             ComponentType.EXECUTOR_DEFAULT, ExecutorFactory
         ).create()

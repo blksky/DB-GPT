@@ -1,4 +1,4 @@
-// import { ReactComponent as BotIcon } from "../icons/bot.svg";
+// import BotIcon from "../icons/bot.svg";
 
 import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from '@hello-pangea/dnd';
 import styles from './home.module.less';

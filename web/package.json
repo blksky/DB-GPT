@@ -143,7 +143,18 @@
     "@ant-design/plots": "^2.3.2",
     "highlight.js": "^11.9.0",
     "umi-request": "^1.4.0",
-    "clone-deep": "^4.0.1"
+    "clone-deep": "^4.0.1",
+    "sql-formatter": "^15.3.2",
+    "rehype-highlight": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "react-markdown": "^9.0.1",
+    "github-markdown-css": "^5.5.1",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "@svgr/webpack": "^8.1.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "url-loader": "^4.1.1",
+    "file-loader": "^6.2.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.2",

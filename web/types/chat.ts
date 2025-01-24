@@ -50,6 +50,7 @@ export type IChatDialogueSchema = {
     | 'chat_flow'
     | (string & {});
   select_param: string;
+  select_param_scope?: Record<string, any>;
   app_code: string;
   param_need?: ParamNeed[];
 };

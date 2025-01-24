@@ -4,9 +4,9 @@ import { IconButton } from './button';
 import { EmojiAvatar } from './emoji';
 import styles from './new-chat.module.less';
 
-import { ReactComponent as EyeIcon } from '../icons/eye.svg';
-import { ReactComponent as LeftIcon } from '../icons/left.svg';
-import { ReactComponent as LightningIcon } from '../icons/lightning.svg';
+import EyeIcon from '../icons/eye.svg';
+import LeftIcon from '../icons/left.svg';
+import LightningIcon from '../icons/lightning.svg';
 
 // import { useLocation } from 'react-router-dom';
 import Locale from '../chatLocales';

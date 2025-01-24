@@ -29,6 +29,7 @@ class KnowledgeSpaceRetriever(BaseRetriever):
         query_rewrite: Optional[QueryRewrite] = None,
         rerank: Optional[Ranker] = None,
         llm_model: Optional[str] = None,
+        document_ids: Optional[list] = None,
     ):
         """
         Args:
@@ -40,6 +41,7 @@ class KnowledgeSpaceRetriever(BaseRetriever):
         if space_id is None:
             raise ValueError("space_id is required")
         self._space_id = space_id
+        self._document_ids = document_ids
         self._top_k = top_k
         self._query_rewrite = query_rewrite
         self._rerank = rerank
@@ -75,7 +77,7 @@ class KnowledgeSpaceRetriever(BaseRetriever):
 
         self._retriever_chain = RetrieverChain(
             retrievers=[
-                QARetriever(space_id=space_id, top_k=top_k, embedding_fn=embedding_fn),
+                QARetriever(space_id=space_id, document_ids=document_ids, top_k=top_k, embedding_fn=embedding_fn),
                 EmbeddingRetriever(
                     index_store=self._vector_store_connector.index_client,
                     top_k=top_k,
